@@ -1,0 +1,72 @@
+/* Thiết lập nền giấy vẽ kỹ thuật */
+body {
+    background: linear-gradient(to bottom, #dfe6e9, #b2bec3); 
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    overflow: hidden;
+}
+
+svg { 
+    max-width: 600px;
+    height: 80vh;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2));
+}
+
+/* Các loại nét vẽ */
+.solid-line { 
+    fill: none; 
+    stroke: #2d3436; 
+    stroke-width: 1.5; 
+    stroke-linecap: round; 
+    stroke-linejoin: round; 
+}
+
+.dashed-line { 
+    fill: none; 
+    stroke: #636e72; 
+    stroke-width: 1; 
+    stroke-dasharray: 5,5; 
+}
+
+.point { 
+    fill: #2d3436; 
+    cursor: pointer; /* Thêm con trỏ tay để biết là bấm được */
+    transition: r 0.3s;
+}
+
+.point:hover {
+    r: 6; /* Phóng to điểm khi di chuột vào */
+    fill: #d63031;
+}
+
+.label { 
+    font-size: 14px; 
+    font-style: italic; 
+    font-weight: bold; 
+    fill: #2d3436;
+    user-select: none;
+}
+
+/* Hiệu ứng vẽ nét (Animation) */
+.draw-anim { 
+    stroke-dasharray: 2000; 
+    stroke-dashoffset: 2000; 
+    animation: draw 5s ease-in-out forwards; 
+}
+
+@keyframes draw { 
+    to { stroke-dashoffset: 0; } 
+}
+
+.math-wish { 
+    margin-top: 20px; 
+    font-size: 1.2rem; 
+    color: #2d3436; 
+    text-align: center;
+    min-height: 50px; /* Giữ chỗ để không bị nhảy layout */
+}
