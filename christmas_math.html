@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Tree</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css"> 
+    <script src="js/script.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #dfe6e9, #b2bec3); 
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+        }
+        svg { max-width: 500px; filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2)); }
+        .solid-line { fill: none; stroke: #2d3436; stroke-width: 2; stroke-linecap: round; }
+        .dashed-line { fill: none; stroke: #636e72; stroke-width: 1.5; stroke-dasharray: 5,5; }
+        .point { fill: #2d3436; }
+        .label { font-size: 14px; font-style: italic; font-weight: bold; }
+        .draw-anim { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 4s ease-in-out forwards; }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+        .math-wish { margin-top: 20px; font-size: 1.2rem; color: #2d3436;}
+    </style>
+</head>
+<body>
+    <a href="index.html" style="position: absolute; top: 20px; left: 20px; color: #333; text-decoration: none; font-size: 24px;">🏠 Menu</a>
+
+    <svg viewBox="0 0 400 500" width="100%" height="80%">
+        <polygon points="200,20 205,35 220,35 210,45 215,60 200,50 185,60 190,45 180,35 195,35" fill="none" stroke="#2d3436" stroke-width="2" />
+        <text x="195" y="15" class="label">S</text>
+        <path d="M200,60 L150,150 L250,150 Z" class="solid-line draw-anim" /> 
+        <line x1="200" y1="60" x2="200" y2="150" class="dashed-line" />
+        <path d="M150,150 L100,250 L300,250 L250,150" class="solid-line draw-anim" />
+        <line x1="200" y1="150" x2="200" y2="250" class="dashed-line" />
+        <path d="M100,250 L50,380 L350,380 L300,250" class="solid-line draw-anim" />
+        <ellipse cx="200" cy="380" rx="150" ry="30" class="solid-line" stroke-dasharray="5,5" />
+        <path d="M50,380 A150,30 0 0,0 350,380" class="solid-line" style="fill:none; stroke-dasharray:none;" />
+        <line x1="200" y1="250" x2="200" y2="380" class="dashed-line" />
+        <circle cx="200" cy="380" r="3" class="point" />
+        <text x="205" y="395" class="label">O (Tâm)</text>
+        <line x1="200" y1="150" x2="100" y2="250" class="dashed-line" />
+        <line x1="200" y1="150" x2="300" y2="250" class="dashed-line" />
+        <text x="40" y="380" class="label">A</text>
+        <text x="360" y="380" class="label">B</text>
+        <path d="M180,400 L180,450 Q200,460 220,450 L220,400" class="solid-line" />
+    </svg>
+
+    <div class="math-wish">
+        Giả sử: Noel = Vui vẻ.<br>
+        Chứng minh: Bạn hạnh phúc mọi điểm thuộc miền xác định!
+    </div>
+</body>
+</html>
