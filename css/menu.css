@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #1a1a2e; /* Nền tối khác một chút cho phân biệt */
+    background-color: #1a1a2e; /* Nền tối cũ */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     display: flex;
@@ -28,23 +28,23 @@ h1 {
     max-width: 1000px;
 }
 
-/* Thiết kế từng cái thẻ (Card) */
+/* Thiết kế thẻ (Card) cũ */
 .card {
     background: #16213e;
     border-radius: 15px;
-    text-decoration: none; /* Bỏ gạch chân của thẻ a */
+    text-decoration: none;
     color: white;
     transition: transform 0.3s, box-shadow 0.3s;
     overflow: hidden;
-    border: 1px solid #0f3460;
+    border: 1px solid #0f3460; /* Viền tối mặc định */
     display: block;
 }
 
-/* Hiệu ứng khi di chuột vào (giống nút bấm) */
+/* Hiệu ứng cũ */
 .card:hover {
-    transform: translateY(-10px); /* Nổi lên trên */
-    box-shadow: 0 10px 20px rgba(233, 69, 96, 0.4); /* Phát sáng nhẹ */
-    border-color: #e94560;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(233, 69, 96, 0.4);
+    /* border-color sẽ lấy từ style inline trong html */
 }
 
 .card-content {
@@ -65,11 +65,4 @@ h2 {
 p {
     font-size: 0.9rem;
     color: #ccc;
-}
-
-/* Style cho các nút chưa làm xong */
-.coming-soon {
-    opacity: 0.6;
-    cursor: not-allowed;
-    filter: grayscale(100%); /* Làm xám màu đi */
 }
