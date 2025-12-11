@@ -3,59 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometry Tree</title>
+    <title>Geometry Tree - Folded</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/style.css"> 
-    <script src="js/script.js"></script>
-
-    <style>
-        body {
-            background: linear-gradient(to bottom, #dfe6e9, #b2bec3); 
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cinzel', serif;
-        }
-        svg { max-width: 500px; filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2)); }
-        .solid-line { fill: none; stroke: #2d3436; stroke-width: 2; stroke-linecap: round; }
-        .dashed-line { fill: none; stroke: #636e72; stroke-width: 1.5; stroke-dasharray: 5,5; }
-        .point { fill: #2d3436; }
-        .label { font-size: 14px; font-style: italic; font-weight: bold; }
-        .draw-anim { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 4s ease-in-out forwards; }
-        @keyframes draw { to { stroke-dashoffset: 0; } }
-        .math-wish { margin-top: 20px; font-size: 1.2rem; color: #2d3436;}
-    </style>
-</head>
+    <link rel="stylesheet" href="css/style.css">      <link rel="stylesheet" href="css/math_tree.css">  </head>
 <body>
-    <a href="index.html" style="position: absolute; top: 20px; left: 20px; color: #333; text-decoration: none; font-size: 24px;">🏠 Menu</a>
+    <a href="index.html" style="position: absolute; top: 20px; left: 20px; color: #333; text-decoration: none; font-size: 24px; z-index: 10;">🏠 Menu</a>
 
-    <svg viewBox="0 0 400 500" width="100%" height="80%">
-        <polygon points="200,20 205,35 220,35 210,45 215,60 200,50 185,60 190,45 180,35 195,35" fill="none" stroke="#2d3436" stroke-width="2" />
-        <text x="195" y="15" class="label">S</text>
-        <path d="M200,60 L150,150 L250,150 Z" class="solid-line draw-anim" /> 
-        <line x1="200" y1="60" x2="200" y2="150" class="dashed-line" />
-        <path d="M150,150 L100,250 L300,250 L250,150" class="solid-line draw-anim" />
-        <line x1="200" y1="150" x2="200" y2="250" class="dashed-line" />
-        <path d="M100,250 L50,380 L350,380 L300,250" class="solid-line draw-anim" />
-        <ellipse cx="200" cy="380" rx="150" ry="30" class="solid-line" stroke-dasharray="5,5" />
-        <path d="M50,380 A150,30 0 0,0 350,380" class="solid-line" style="fill:none; stroke-dasharray:none;" />
-        <line x1="200" y1="250" x2="200" y2="380" class="dashed-line" />
-        <circle cx="200" cy="380" r="3" class="point" />
-        <text x="205" y="395" class="label">O (Tâm)</text>
-        <line x1="200" y1="150" x2="100" y2="250" class="dashed-line" />
-        <line x1="200" y1="150" x2="300" y2="250" class="dashed-line" />
-        <text x="40" y="380" class="label">A</text>
-        <text x="360" y="380" class="label">B</text>
-        <path d="M180,400 L180,450 Q200,460 220,450 L220,400" class="solid-line" />
+    <svg viewBox="0 0 500 600">
+        <polygon points="250,30 260,55 285,55 265,75 275,100 250,85 225,100 235,75 215,55 240,55" 
+                 fill="#f1c40f" stroke="#2d3436" stroke-width="2" />
+        <text x="245" y="25" class="label">S</text>
+        <circle cx="250" cy="100" r="3" class="point" />
+
+        <path d="M170,200 A80,20 0 0,1 330,200" class="dashed-line" />
+        <line x1="250" y1="100" x2="170" y2="200" class="dashed-line draw-anim" />
+        <line x1="250" y1="100" x2="330" y2="200" class="dashed-line draw-anim" />
+        <line x1="250" y1="100" x2="250" y2="180" class="dashed-line draw-anim" />
+        <path d="M170,200 A80,20 0 0,0 330,200" class="solid-line" />
+        <line x1="250" y1="100" x2="210" y2="217" class="solid-line draw-anim" />
+        <line x1="250" y1="100" x2="290" y2="217" class="solid-line draw-anim" />
+        <line x1="250" y1="100" x2="250" y2="220" class="solid-line draw-anim" />
+        <circle cx="170" cy="200" r="3" class="point" /> <text x="150" y="200" class="label">A1</text>
+        <circle cx="330" cy="200" r="3" class="point" /> <text x="340" y="200" class="label">B1</text>
+        <circle cx="250" cy="200" r="3" class="point" /> <text x="255" y="195" class="label">O1</text>
+
+        <path d="M110,350 A140,35 0 0,1 390,350" class="dashed-line" />
+        <line x1="250" y1="200" x2="110" y2="350" class="dashed-line draw-anim" />
+        <line x1="250" y1="200" x2="390" y2="350" class="dashed-line draw-anim" />
+        <line x1="250" y1="200" x2="180" y2="320" class="dashed-line draw-anim" />
+        <line x1="250" y1="200" x2="320" y2="320" class="dashed-line draw-anim" />
+        <path d="M110,350 A140,35 0 0,0 390,350" class="solid-line" />
+        <line x1="250" y1="200" x2="150" y2="375" class="solid-line draw-anim" />
+        <line x1="250" y1="200" x2="350" y2="375" class="solid-line draw-anim" />
+        <line x1="250" y1="200" x2="250" y2="385" class="solid-line draw-anim" />
+        <circle cx="110" cy="350" r="3" class="point" /> <text x="90" y="350" class="label">A2</text>
+        <circle cx="390" cy="350" r="3" class="point" /> <text x="400" y="350" class="label">B2</text>
+        <circle cx="250" cy="350" r="3" class="point" /> <text x="255" y="345" class="label">O2</text>
+
+        <path d="M50,500 A200,50 0 0,1 450,500" class="dashed-line" />
+        <line x1="250" y1="350" x2="50" y2="500" class="dashed-line draw-anim" />
+        <line x1="250" y1="350" x2="450" y2="500" class="dashed-line draw-anim" />
+        <line x1="250" y1="350" x2="120" y2="465" class="dashed-line draw-anim" />
+        <line x1="250" y1="350" x2="380" y2="465" class="dashed-line draw-anim" />
+        <path d="M50,500 A200,50 0 0,0 450,500" class="solid-line" />
+        <line x1="250" y1="350" x2="100" y2="535" class="solid-line draw-anim" />
+        <line x1="250" y1="350" x2="180" y2="548" class="solid-line draw-anim" />
+        <line x1="250" y1="350" x2="320" y2="548" class="solid-line draw-anim" />
+        <line x1="250" y1="350" x2="400" y2="535" class="solid-line draw-anim" />
+        <line x1="250" y1="350" x2="250" y2="550" class="solid-line draw-anim" />
+        <circle cx="50" cy="500" r="3" class="point" /> <text x="30" y="500" class="label">A3</text>
+        <circle cx="450" cy="500" r="3" class="point" /> <text x="460" y="500" class="label">B3</text>
+        <circle cx="250" cy="500" r="3" class="point" /> <text x="255" y="515" class="label">O3</text>
+
+        <line x1="250" y1="100" x2="250" y2="500" class="dashed-line" stroke-width="2" />
+        <path d="M220,500 L220,580 Q250,600 280,580 L280,500" class="solid-line" fill="#795548" />
+        <path d="M220,580 Q250,560 280,580" class="solid-line" fill="none" />
     </svg>
 
-    <div class="math-wish">
-        Giả sử: Noel = Vui vẻ.<br>
-        Chứng minh: Bạn hạnh phúc mọi điểm thuộc miền xác định!
-    </div>
-</body>
+    <div id="math-wish-content" class="math-wish"></div>
+
+    <script src="js/script.js"></script>     <script src="js/math_tree.js"></script>  </body>
 </html>
