@@ -6,41 +6,97 @@
     <title>Christmas Card</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/music.css">
+    <style>
+        /* CSS riêng cho trang này */
+        body {
+            /* Ghi đè để căn giữa nội dung */
+            justify-content: center !important; 
+        }
+
+        .tree-container {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            z-index: 2;
+        }
+
+        svg path {
+            fill: none;
+            stroke: #d4af37;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: drawTree 4s ease-in-out forwards;
+        }
+
+        .star {
+            fill: none;
+            stroke: #d4af37;
+            stroke-width: 2;
+            opacity: 0;
+            animation: fadeInStar 1s ease-in-out 3.5s forwards;
+        }
+
+        @keyframes drawTree { to { stroke-dashoffset: 0; } }
+        @keyframes fadeInStar {
+            from { opacity: 0; transform: scale(0); transform-origin: center; }
+            to { opacity: 1; transform: scale(1); transform-origin: center; fill: #d4af37; }
+        }
+
+        /* --- Phần Chữ và GIF --- */
+        /* Tạo một container bao quanh cả chữ và GIF để xếp hàng ngang */
+        .message-container {
+            display: flex; /* Xếp hàng ngang */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            gap: 15px; /* Khoảng cách giữa chữ và GIF */
+            margin-top: 20px;
+            z-index: 2;
+            /* Áp dụng hiệu ứng hiện lên cho cả khối này */
+            opacity: 0;
+            animation: fadeInUp 2s ease-out 4s forwards;
+        }
+
+        .message {
+            font-family: 'Great Vibes', cursive;
+            color: #fff;
+            font-size: 3rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin: 0; /* Bỏ margin cũ */
+        }
+
+        /* Style mới cho GIF ông già Noel */
+        .santa-gif {
+            width: 80px; /* Kích thước vừa phải */
+            height: auto;
+            /* Không còn position: absolute nữa */
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <a href="index.html" style="position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-size: 24px; z-index: 10;">
-        🏠 Home
-    </a>
+
+    <a href="index.html" style="position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-size: 24px; z-index: 10;">🏠 Menu</a>
+
     <div class="tree-container">
         <svg viewBox="0 0 200 300" width="100%" height="100%">
             <polygon class="star" points="100,10 104,22 117,22 107,30 111,42 100,34 89,42 93,30 83,22 96,22" />
-            
-            <path d="M100,45 
-                     C100,45 80,80 60,90 
-                     C75,90 90,85 100,80
-                     C110,85 125,90 140,90
-                     C120,80 100,45 100,45
-                     
-                     M100,80
-                     C90,80 50,130 30,150
-                     C50,150 80,140 100,130
-                     C120,140 150,150 170,150
-                     C150,130 110,80 100,80
-
-                     M100,130
-                     C90,130 20,220 10,250
-                     C50,250 80,240 100,230
-                     C120,240 150,250 190,250
-                     C180,220 110,130 100,130
-                     
-                     M40,260 Q100,280 160,260" />
+            <path d="M100,45 C100,45 80,80 60,90 C75,90 90,85 100,80 C110,85 125,90 140,90 C120,80 100,45 100,45 M100,80 C90,80 50,130 30,150 C50,150 80,140 100,130 C120,140 150,150 170,150 C150,130 110,80 100,80 M100,130 C90,130 20,220 10,250 C50,250 80,240 100,230 C120,240 150,250 190,250 C180,220 110,130 100,130 M40,260 Q100,280 160,260" />
         </svg>
     </div>
 
-    <div class="message">Wish You Joy and Peace</div>
+    <div class="message-container">
+        <div class="message">Wish You Joy and Peace</div>
+        <img src="gif/christmas_santa_claus.gif" alt="Santa Walking" class="santa-gif">
+    </div>
 
-    <img src="https://media.giphy.com/media/DyQrKMpqkAhNHB1jAd/giphy.gif" alt="Santa Walking" class="santa-claus">
-
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/music.js"></script>
 </body>
 </html>
