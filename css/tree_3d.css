@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Đặt màu nền ở đây để nó hiện ra sau canvas trong suốt */
+    background-color: #0d112b; 
+    height: 100vh;
+    width: 100vw;
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Đặt z-index thấp hơn tuyết (tuyết thường là z-index: 1 trong script.js) */
+    z-index: 0; 
+    /* Cho phép click xuyên qua canvas để tương tác với các phần tử bên dưới nếu cần */
+    pointer-events: none; 
+}
+
+.wish-3d {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: #f1c40f;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3rem;
+    z-index: 10;
+    text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+}
