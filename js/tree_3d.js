@@ -4,11 +4,10 @@ scene.fog = new THREE.FogExp2(0x0d112b, 0.02);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-// --- ĐIỀU CHỈNH CAMERA GẦN HƠN VÀ THẤP HƠN ---
-// Vì cây nhỏ đi nhiều nên cần đưa camera lại gần để nhìn rõ
+// --- CAMERA ---
 camera.position.z = 25; 
-camera.position.y = 8; 
-camera.lookAt(0, 6, 0); // Nhìn vào trọng tâm cây
+camera.position.y = 9; 
+camera.lookAt(0, 6, 0);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -17,7 +16,7 @@ renderer.physicallyCorrectLights = true;
 renderer.outputEncoding = THREE.sRGBEncoding;
 document.body.appendChild(renderer.domElement);
 
-// --- 2. TẠO CÂY THÔNG XOẮN ỐC (PARTICLE SYSTEM) ---
+// --- 2. TẠO CÂY THÔNG XOẮN ỐC ---
 const particleCount = 3000;
 const geometry = new THREE.BufferGeometry();
 const positions = [];
@@ -26,10 +25,9 @@ const colors = [];
 const color1 = new THREE.Color("#e74c3c");
 const color2 = new THREE.Color("#f1c40f");
 
-// --- CÂY THẤP HƠN NỮA ---
-const treeHeight = 20;  // Hạ xuống còn 15 (cũ là 25)
-const baseRadius = 7;   // Hạ bán kính xuống 6 (cũ là 9)
-const spiralTurns = 8;  // Giảm số vòng xoắn đi 1 chút cho đỡ rối mắt
+const treeHeight = 20; 
+const baseRadius = 7;   
+const spiralTurns = 8;  
 
 for (let i = 0; i < particleCount; i++) {
     const t = i / particleCount;
@@ -53,7 +51,7 @@ geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)
 geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
 const material = new THREE.PointsMaterial({
-    size: 0.3, // Giảm kích thước hạt đi một chút cho mịn
+    size: 0.3,
     vertexColors: true,
     transparent: true,
     opacity: 0.9,
@@ -67,13 +65,13 @@ scene.add(treeGroup);
 const treeParticles = new THREE.Points(geometry, material);
 treeGroup.add(treeParticles); 
 
-// --- 3. TẠO NGÔI SAO TRÊN ĐỈNH ---
+// --- 3. TẠO NGÔI SAO 3D ---
 const starShape = new THREE.Shape();
-// Giảm kích thước ngôi sao cho cân đối với cây nhỏ
 const outerRadius = 1.0; 
 const innerRadius = 0.5;
 const spikes = 5;
 
+// Vẽ hình 2D
 for (let i = 0; i < spikes * 2; i++) {
     const r = (i % 2 === 0) ? outerRadius : innerRadius;
     const angle = (i / (spikes * 2)) * Math.PI * 2;
@@ -84,20 +82,41 @@ for (let i = 0; i < spikes * 2; i++) {
 }
 starShape.closePath();
 
-const starGeometry = new THREE.ShapeGeometry(starShape);
-const starMaterial = new THREE.MeshBasicMaterial({ 
+// Tạo khối 3D (Extrude)
+const extrudeSettings = {
+    depth: 0.4,          // Độ dày
+    bevelEnabled: true,  
+    bevelThickness: 0.1,
+    bevelSize: 0.1,
+    bevelSegments: 3
+};
+
+const starGeometry = new THREE.ExtrudeGeometry(starShape, extrudeSettings);
+
+// Chất liệu bóng 3D
+const starMaterial = new THREE.MeshPhongMaterial({ 
     color: "#f1c40f",
-    side: THREE.DoubleSide
+    shininess: 100,
+    specular: "#ffffff"
 });
+
 const starMesh = new THREE.Mesh(starGeometry, starMaterial);
-starMesh.position.y = treeHeight + 0.3; // Đặt ngay trên đỉnh cây mới
+
+// --- VỊ TRÍ MỚI (Đứng thẳng) ---
+// Do Extrude tạo hình theo trục Z, nên mặc định nó đã "đứng" mặt hướng về camera.
+// Ta chỉ cần đặt nó lên đỉnh là xong.
+starMesh.position.y = treeHeight + 1.5; 
+// Canh chỉnh lại tâm để ngôi sao nằm giữa trục xoay
+// Vì ExtrudeGeometry tạo hình từ gốc (0,0) ra dương Z, nên ta cần lùi lại một nửa độ dày
+starMesh.position.z = -0.2; 
+
 treeGroup.add(starMesh); 
 
 // --- 4. ÁNH SÁNG ---
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xf1c40f, 1, 30);
-pointLight.position.set(0, treeHeight, 0); // Đèn đi theo chiều cao cây
+const pointLight = new THREE.PointLight(0xf1c40f, 1.5, 40);
+pointLight.position.set(0, treeHeight, 10); // Đèn chiếu từ phía trước để thấy bóng ngôi sao
 scene.add(pointLight);
 
 // --- 5. XỬ LÝ RESIZE ---
@@ -107,12 +126,12 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// --- 6. VÒNG LẶP ANIMATION ---
+// --- 6. ANIMATION ---
 const animate = () => {
     requestAnimationFrame(animate);
 
-    // Xoay đều cả nhóm
-    treeGroup.rotation.y -= 0.008; // Tăng tốc độ xoay lên một chút nhìn cho vui mắt
+    // Xoay cây
+    treeGroup.rotation.y -= 0.008;
 
     // Lấp lánh
     material.size = 0.3 + Math.sin(Date.now() * 0.003) * 0.05;

@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Nền Gradient đỏ đen lãng mạn */
+    background: radial-gradient(circle at center, #3e0000 0%, #000000 100%);
+    height: 100vh;
+    width: 100vw;
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Áp dụng class từ hình image_b99149 */
+.Christmas_love {
+    position: absolute;
+    width: 80%; /* Căn chỉnh lại chút cho đẹp */
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    font-size: 3rem;
+    font-family: "Great Vibes", cursive; /* Font thay thế cho Te Amo */
+    color: #ffeb3b; /* Màu vàng sáng */
+    
+    display: flex;
+    justify-content: space-between; /* Tách 2 dòng chữ ra 2 bên cây */
+    pointer-events: none; /* Để chuột xuyên qua chữ đụng vào cây */
+    z-index: 10;
+    text-shadow: 0 0 10px rgba(255, 235, 59, 0.6);
+}
+
+.Christmas_love span:last-child {
+    color: #ff4d4d; /* Chữ bên phải màu đỏ hồng */
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
+}
