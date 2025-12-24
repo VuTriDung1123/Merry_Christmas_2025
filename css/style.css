@@ -3,33 +3,24 @@
 /* ============================================================ */
 
 html {
-    /* Ép thanh cuộn dọc LUÔN HIỆN diện. 
-       Việc này chiếm sẵn 1 khoảng không gian cố định bên phải, 
-       giúp nội dung không bị nhảy khi chuyển trang dài/ngắn */
+    /* Ép thanh cuộn dọc LUÔN HIỆN diện */
     overflow-y: scroll; 
-    
     /* Chặn cuộn ngang tuyệt đối */
     overflow-x: hidden;
-    
     scroll-behavior: smooth;
-    height: 100%; /* Đảm bảo chiều cao full */
+    height: 100%; 
 }
 
 body {
     margin: 0;
     padding: 0;
     background-color: #0d112b;
-    
-    /* QUAN TRỌNG: Dùng width 100% thay vì 100vw 
-       (100vw sẽ tính cả bề rộng thanh cuộn -> gây tràn ngang -> gây giật) */
+    /* Dùng width 100% thay vì 100vw để tránh lỗi thanh cuộn */
     width: 100%; 
     min-height: 100vh;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; <-- BỎ dòng này đi để tránh lỗi nhảy khi nội dung dài */
-    
     font-family: 'Arial', sans-serif;
     position: relative;
     box-sizing: border-box;
@@ -42,9 +33,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Cắt bỏ mọi thứ rơi ra ngoài -> KHÔNG BAO GIỜ GIẬT */
-    z-index: 1; /* Nằm trên nền nhưng dưới nội dung chính */
-    pointer-events: none; /* Chuột bấm xuyên qua */
+    overflow: hidden; 
+    z-index: 1; 
+    pointer-events: none; 
 }
 
 /* Đảm bảo nội dung chính nằm trên tuyết */
@@ -59,7 +50,6 @@ body {
     height: 400px;
     position: relative;
     z-index: 2;
-    /* Thêm margin để không bị dính sát khi màn hình nhỏ */
     margin: 20px 0; 
 }
 
@@ -94,12 +84,12 @@ svg path {
     color: #fff;
     font-size: 3rem;
     margin-top: 10px;
-    margin-bottom: 20px; /* Thêm khoảng trống dưới */
+    margin-bottom: 20px;
     z-index: 2;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     opacity: 0;
     animation: fadeInUp 2s ease-out 4s forwards;
-    text-align: center; /* Căn giữa chữ */
+    text-align: center;
 }
 
 @keyframes fadeInUp {
@@ -117,23 +107,23 @@ svg path {
     max-width: 30vw; 
 }
 
-/* --- HẠT TUYẾT (CHẤM TRÒN NHỎ) --- */
+/* --- HẠT TUYẾT --- */
 .snowflake {
     position: absolute;
-    background-color: #fff; /* Màu trắng */
-    border-radius: 50%; /* Bo tròn thành chấm bi */
+    background-color: #fff;
+    border-radius: 50%;
     opacity: 0.8;
     pointer-events: none;
-    top: -10px; /* Xuất phát từ trên nóc màn hình */
+    top: -10px;
 }
 
 @keyframes fall {
-    to { transform: translateY(110vh); } /* Rơi quá màn hình một chút */
+    to { transform: translateY(110vh); } 
 }
 
 /* --- THANH CUỘN ĐẸP --- */
 ::-webkit-scrollbar {
-    width: 12px; /* Luôn giữ độ rộng này */
+    width: 12px;
     background-color: #0d112b;
 }
 
@@ -151,54 +141,76 @@ svg path {
     background: linear-gradient(to bottom, #ffd700, #ff6b6b);
 }
 
-/* Đảm bảo hình ảnh/canvas không bao giờ to hơn màn hình */
 img, canvas {
     max-width: 100%;
     height: auto;
 }
 
-/* Container chính của cây thông */
 .container {
     width: 100%;
-    max-width: 800px; /* Giới hạn chiều rộng trên PC */
+    max-width: 800px; 
     margin: 0 auto;
     padding: 10px;
-    box-sizing: border-box; /* Tính padding vào trong width */
+    box-sizing: border-box; 
 }
 
-/* Nút Home, Nút Nhạc trên Mobile cần to hơn để dễ bấm */
-@media screen and (max-width: 768px) {
-    a[href="index.html"], a[href="card.html"] {
-        font-size: 1.2rem !important;
-        padding: 10px !important;
-    }
+/* ====================================================== */
+/* MÀN HÌNH CHẶN ĐIỆN THOẠI & TABLET (Blocker)            */
+/* ====================================================== */
+
+/* Mặc định ẩn màn hình chặn (trên PC) */
+#mobile-blocker {
+    display: none;
 }
 
-/* --- RESPONSIVE CHUNG CHO MOBILE (Thêm vào cuối style.css) --- */
-@media screen and (max-width: 768px) {
-    /* 1. Ngăn chặn tràn ngang tuyệt đối */
-    body, html {
-        overflow-x: hidden;
+/* Khi màn hình nhỏ hơn 1100px (Điện thoại + iPad) thì HIỆN */
+@media screen and (max-width: 1100px) {
+    /* Hiện màn hình chặn đè lên tất cả */
+    #mobile-blocker {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0; 
+        left: 0;
         width: 100%;
-        position: relative;
+        height: 100%;
+        background: #000; /* Nền đen tuyệt đối */
+        z-index: 9999999; /* Đè lên tất cả mọi thứ */
+        color: #fff;
+        text-align: center;
+        padding: 20px;
     }
 
-    /* 2. Thu nhỏ tiêu đề lớn */
-    h1 {
-        font-size: 1.8rem !important; /* Giảm từ 3.5rem xuống */
-        margin-top: 15px !important;
+    /* Ẩn thanh cuộn của trang web phía sau để không cuộn được */
+    body, html {
+        overflow: hidden !important;
     }
+}
 
-    /* 3. Nút Menu & Back gọn hơn */
-    a[href="menu.html"], .back-btn, .nav-link {
-        font-size: 1rem !important;
-        padding: 5px 10px !important;
-        top: 10px !important;
-        left: 10px !important;
-    }
+/* Trang trí cho nội dung thông báo */
+.blocker-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
 
-    /* 4. Điều chỉnh tuyết rơi không làm vướng cảm ứng */
-    #snow-container {
-        pointer-events: none;
-    }
+.blocker-content p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+.blocker-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: shake 1s infinite;
+}
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
 }
