@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     /* ====================================================== */
-    /* 1. TỰ ĐỘNG CHẶN ĐIỆN THOẠI & TABLET (INJECT CSS + HTML) */
+    /* 1. GIAO DIỆN NHẮC NHỞ MOBILE (ĐẸP & THÂN THIỆN)        */
     /* ====================================================== */
     (function injectMobileBlocker() {
-        // A. Tạo Style CSS cho màn hình chặn
+        // A. Tạo Style CSS đẹp lung linh cho màn hình thông báo
         const style = document.createElement('style');
         style.innerHTML = `
             #mobile-blocker { 
-                display: none; /* Mặc định ẩn trên PC */
+                display: none; /* Ẩn trên PC */
             }
             
             /* KHI MÀN HÌNH NHỎ HƠN 1100PX (Mobile/Tablet) */
@@ -21,42 +21,92 @@ document.addEventListener('DOMContentLoaded', () => {
                     position: fixed;
                     top: 0; left: 0;
                     width: 100%; height: 100%;
-                    background-color: #000; /* Nền đen kịt */
-                    z-index: 99999999; /* Đè lên tất cả */
+                    
+                    /* Nền Gradient Đỏ - Đen Giáng Sinh sang trọng */
+                    background: radial-gradient(circle at center, #8e0e00, #1f1c18);
+                    
+                    z-index: 99999999; 
                     color: #fff;
                     text-align: center;
-                    padding: 20px;
+                    padding: 30px;
+                    box-sizing: border-box;
                 }
                 
                 /* Ẩn thanh cuộn web gốc */
                 body, html { overflow: hidden !important; }
                 
-                /* Ẩn luôn nội dung web gốc để chắc chắn */
-                body > *:not(#mobile-blocker) { display: none !important; }
+                /* Ẩn nội dung phía sau để tối ưu hiệu năng */
+                body > *:not(#mobile-blocker) { visibility: hidden !important; }
             }
 
-            .blocker-content h1 { font-size: 3rem; margin-bottom: 20px; color: #e74c3c; font-family: sans-serif; }
-            .blocker-content p { font-size: 1.2rem; line-height: 1.6; color: #ccc; font-family: sans-serif; margin: 10px 0; }
-            .blocker-icon { font-size: 5rem; margin-bottom: 30px; animation: shake 1s infinite; }
-            
-            @keyframes shake {
-                0% { transform: rotate(0deg); } 25% { transform: rotate(-10deg); } 
-                75% { transform: rotate(10deg); } 100% { transform: rotate(0deg); }
+            .blocker-box {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+                padding: 40px 20px;
+                border-radius: 20px;
+                border: 2px solid rgba(255, 215, 55, 0.3);
+                box-shadow: 0 0 30px rgba(0,0,0,0.5);
+                max-width: 90%;
+            }
+
+            .blocker-icon { 
+                font-size: 5rem; 
+                margin-bottom: 20px; 
+                animation: floatIcon 3s ease-in-out infinite; 
+                display: inline-block;
+            }
+
+            .blocker-title { 
+                font-size: 2rem; 
+                margin-bottom: 15px; 
+                color: #ffd700; /* Màu vàng kim */
+                font-family: 'Arial', sans-serif;
+                font-weight: bold;
+                text-transform: uppercase;
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+
+            .blocker-msg { 
+                font-size: 1.1rem; 
+                line-height: 1.6; 
+                color: #eee; 
+                font-family: 'Arial', sans-serif; 
+                margin-bottom: 20px;
+            }
+
+            .blocker-note {
+                font-size: 0.9rem;
+                color: #aaa;
+                font-style: italic;
+                margin-top: 20px;
+                border-top: 1px solid rgba(255,255,255,0.2);
+                padding-top: 10px;
+            }
+
+            @keyframes floatIcon {
+                0%, 100% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-10px) rotate(5deg); }
             }
         `;
         document.head.appendChild(style);
 
-        // B. Tạo HTML thông báo
+        // B. Tạo HTML nội dung thân thiện
         const blocker = document.createElement('div');
         blocker.id = 'mobile-blocker';
         blocker.innerHTML = `
-            <div class="blocker-content">
-                <div class="blocker-icon">💻 🚫 📱</div>
-                <h1>Opps!</h1>
-                <p>Trang web này được thiết kế tuyệt đẹp cho <b>PC & Laptop</b>.</p>
-                <p>Điện thoại và iPad không đủ "đô" để gánh vẻ đẹp này đâu!</p>
-                <br>
-                <p style="color: #f1c40f; font-weight: bold;">Vui lòng mở lại trên máy tính nhé!</p>
+            <div class="blocker-box">
+                <div class="blocker-icon">💻✨🎄</div>
+                <div class="blocker-title">Trải Nghiệm Tốt Nhất Trên PC</div>
+                
+                <div class="blocker-msg">
+                    Chào bạn! Trang web này chứa rất nhiều <b>hiệu ứng 3D và đồ họa đặc biệt</b> để mừng Giáng Sinh.
+                    <br><br>
+                    Để ngắm nhìn trọn vẹn vẻ đẹp lung linh này, bạn vui lòng mở liên kết trên <b>Máy Tính (Laptop/PC)</b> nhé!
+                </div>
+
+                <div class="blocker-note">
+                    (Điện thoại màn hình nhỏ sẽ không hiển thị hết được sự hoành tráng đâu!)
+                </div>
             </div>
         `;
         document.body.appendChild(blocker);
