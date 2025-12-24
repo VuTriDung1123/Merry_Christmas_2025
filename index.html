@@ -3,142 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bộ Sưu Tập Giáng Sinh</title>
-    <link rel="stylesheet" href="css/menu.css">
+    <title>Giáng Sinh Vui Vẻ</title>
+    <link rel="stylesheet" href="css/music.css">
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
+    </style>
 </head>
 <body>
     <div id="snow-container"></div>
-    
-    <h1 id="greeting">🎄 Chọn Loại Cây Thông 🎄</h1>    
-    
-    <div class="grid-container">
-        <a href="christmas_std.html" class="card" style="border-color: #d4af37;">
-            <div class="card-content">
-                <div class="icon">🎨</div>
-                <h2>Hệ Nghệ Thuật</h2>
-                <p>Cây thông vẽ nét & Ông già Noel.</p>
-            </div>
-        </a>
-        <a href="christmas_chem_table.html" class="card" style="border-color: #4cd137;">
-            <div class="card-content">
-                <div class="icon">🧪</div>
-                <h2>Hệ Nguyên Tố</h2>
-                <p>Cây thông xếp từ bảng tuần hoàn.</p>
-            </div>
-        </a>
-        <a href="christmas_math.html" class="card" style="border-color: #00a8ff;">
-            <div class="card-content">
-                <div class="icon">📐</div>
-                <h2>Hệ Hình Học</h2>
-                <p>Mô hình nón và các đường sinh.</p>
-            </div>
-        </a>
-        <a href="christmas_3d.html" class="card" style="border-color: #f1c40f;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">✨🧊</div> 
-                <h2>Hệ Không Gian 3D</h2>
-                <p>Cây thông vòi rồng ánh sáng xoay chiều.</p>
-            </div>
-        </a>
-        <a href="christmas_love.html" class="card" style="border-color: #ff1744;">
-            <div class="card-content">
-                <div class="icon">💖</div>
-                <h2>Hệ Tình Yêu</h2>
-                <p>Cây thông tương tác ánh sáng.</p>
-            </div>
-        </a>
-        <a href="christmas_moba.html" class="card" style="border-color: #e74c3c;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 4rem;">🛡️💀</div> 
-                <h2>Hệ Game Thủ</h2>
-                <p>Cây thông "Defeat" & Ngôi sao Rank Đồng.</p>
-            </div>
-        </a>
-        <a href="christmas_moba_victory.html" class="card" style="border-color: #f1c40f;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 4rem;">🏆⚔️</div> 
-                <h2>Hệ Chiến Thắng</h2>
-                <p>Cây thông "Victory" & Ngôi sao Cao Thủ.</p>
-            </div>
-        </a>
-        <a href="christmas_gacha.html" class="card" style="border-color: #d63384;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 4rem;">💎💳</div> 
-                <h2>Hệ Gacha</h2>
-                <p>Cây thông 118 vật phẩm & Ngôi sao Bank Card.</p>
-            </div>
-        </a>
-        <a href="christmas_code.html" class="card" style="border-color: #9b59b6;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">👨‍💻🔡</div> 
-                <h2>Hệ Lập Trình</h2>
-                <p>Cây thông xếp từ các dòng code console.log().</p>
-            </div>
-        </a>
-
-        <a href="christmas_anime.html" class="card" style="border-color: #ff9ff3;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">🌸👘</div> 
-                <h2>Hệ Anime</h2>
-                <p>Cây thông Sakura & Phong cách Waifu 2D.</p>
-            </div>
-        </a>
-
-        <a href="christmas_matrix.html" class="card" style="border-color: #00ff00;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">0️⃣1️⃣</div> 
-                <h2>Hệ Ma Trận</h2>
-                <p>Cây thông Digital Rain từ dữ liệu nhị phân.</p>
-            </div>
-        </a>
-
-        <a href="christmas_music.html" class="card" style="border-color: #00d2d3;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">🎵🎹</div> 
-                <h2>Hệ Âm Nhạc</h2>
-                <p>Cây thông Visualizer nhún nhảy theo điệu nhạc.</p>
-            </div>
-        </a>
-        <a href="christmas_cyberpunk.html" class="card" style="border-color: #00f2ea; box-shadow: 0 0 10px #00f2ea;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">🤖🌃</div> 
-                <h2>Hệ Cyberpunk</h2>
-                <p>Cây thông Neon City & Vibe tương lai 2077.</p>
-            </div>
-        </a>
-
-        <a href="christmas_pixel.html" class="card" style="border-color: #e67e22;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">👾🕹️</div> 
-                <h2>Hệ 8-Bit</h2>
-                <p>Cây thông Pixel Art phong cách Game Retro.</p>
-            </div>
-        </a>
-
-        <a href="christmas_galaxy.html" class="card" style="border-color: #6c5ce7;">
-            <div class="card-content">
-                <div class="icon" style="font-size: 3.5rem;">🌌🚀</div> 
-                <h2>Hệ Vũ Trụ</h2>
-                <p>Cây thông Tinh Vân từ các chòm sao.</p>
-            </div>
-        </a>
-    </div>
-
-    <div style="text-align: center; margin-bottom: 20px;">
-        <a href="card.html" style="color: #fff; text-decoration: none; font-size: 1.2rem; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid #d4af37;">
-            📖 Xem lại thiệp chúc
-        </a>
-    </div>
-
-    <script src="js/script.js"></script>
-
-    <script>
-    const guestName = localStorage.getItem('guestName');
-    if (guestName) {
-        document.getElementById('greeting').innerHTML = `🎄 Chào <span>${guestName}</span>, Giáng Sinh An Lành! 🎄`;
-        document.querySelector('#greeting span').style.color = '#fff'; 
-        document.querySelector('#greeting span').style.textShadow = '0 0 10px #fff';
-    }
-    </script>
+    <iframe src="welcome.html" name="content-frame" id="mainFrame"></iframe>
+    <script src="js/music.js"></script>
 </body>
 </html>

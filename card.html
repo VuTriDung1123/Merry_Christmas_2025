@@ -136,10 +136,13 @@
         const guestName = localStorage.getItem('guestName');
         if (guestName) document.getElementById('receiver-name').textContent = guestName;
 
+        // --- ĐÃ SỬA LẠI ĐƯỜNG DẪN TẠI ĐÂY ---
         function goToMenu() {
             document.body.style.opacity = 0;
             document.body.style.transition = "opacity 0.8s";
-            setTimeout(() => window.location.href = "index.html", 800);
+            
+            // Chuyển hướng sang menu.html (Trang danh sách cây thông)
+            setTimeout(() => window.location.href = "menu.html", 800);
         }
     </script>
 </body>
