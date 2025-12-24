@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Lời Mời Giáng Sinh</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Patrick+Hand&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/welcome.css">
+    <style>
+        /* Thêm CSS cho hiệu ứng rung lắc (nếu file css chưa có) */
+        .shake { animation: shake 0.5s; }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
 </head>
 <body>
     <div id="snow-container"></div>
@@ -33,16 +45,17 @@
             const name = nameInput.value.trim();
 
             if (name) {
-                // Lưu tên vào bộ nhớ trình duyệt để dùng sau này (nếu cần hiển thị ở menu)
+                // 1. Lưu tên vào localStorage
                 localStorage.setItem('guestName', name);
                 
-                // Hiệu ứng mờ dần trước khi chuyển trang
+                // 2. Hiệu ứng mờ dần
                 document.body.style.opacity = 0;
                 document.body.style.transition = "opacity 1s ease";
                 
                 setTimeout(() => {
-                    // Chuyển hướng sang trang Menu cũ (index.html)
-                    window.location.href = 'card.html';
+                    // 3. QUAN TRỌNG: Dùng window.top để thoát khỏi iframe
+                    // Chuyển hướng sang trang Menu (đã đổi tên thành menu.html)
+                    window.top.location.href = 'card.html';
                 }, 1000);
             } else {
                 // Rung lắc ô input nếu quên nhập tên
