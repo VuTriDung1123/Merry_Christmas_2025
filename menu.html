@@ -133,7 +133,7 @@
     <script src="js/script.js"></script>
 
     <script>
-    const guestName = localStorage.getItem('guestName');
+    const guestName = sessionStorage.getItem('guestName');
     if (guestName) {
         document.getElementById('greeting').innerHTML = `🎄 Chào <span>${guestName}</span>, Giáng Sinh An Lành! 🎄`;
         document.querySelector('#greeting span').style.color = '#fff'; 

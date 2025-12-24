@@ -45,16 +45,20 @@
             const name = nameInput.value.trim();
 
             if (name) {
-                // 1. Lưu tên vào localStorage
-                localStorage.setItem('guestName', name);
+                // 1. [MỚI] Kích hoạt nhạc ở trang mẹ (index.html) ngay khi bấm nút
+                if (window.parent && window.parent.playAudioExternally) {
+                    window.parent.playAudioExternally();
+                }
+
+                // 2. [MỚI] Dùng sessionStorage (Tắt tab là mất dữ liệu -> Fix lỗi lưu cũ)
+                sessionStorage.setItem('guestName', name);
                 
-                // 2. Hiệu ứng mờ dần
+                // Hiệu ứng mờ dần
                 document.body.style.opacity = 0;
                 document.body.style.transition = "opacity 1s ease";
                 
                 setTimeout(() => {
-                    // 3. QUAN TRỌNG: Dùng window.top để thoát khỏi iframe
-                    // Chuyển hướng sang trang Menu (đã đổi tên thành menu.html)
+                    // Chuyển hướng trong iframe
                     window.location.href = 'card.html';
                 }, 1000);
             } else {
@@ -75,6 +79,6 @@
                 enterSite();
             }
         });
-    </script>
+    </script>>
 </body>
 </html>
