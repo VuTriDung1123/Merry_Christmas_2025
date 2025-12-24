@@ -1,53 +1,59 @@
-// Đường dẫn bài hát DUY NHẤT
-const songSrc = "music/hoa_nhip_giang_sinh_speedup.mp3";
+/* ====================================================== */
+/* QUẢN LÝ NHẠC NỀN (GLOBAL) - FIX AUTOPLAY EDGE/CHROME   */
+/* ====================================================== */
 
-function initMusicPlayer() {
-    // 1. Kiểm tra xem đã có nhạc chưa
+const songSrc = "music/hoa_nhip_giang_sinh_speedup.mp3";
+let bgAudio; // Biến toàn cục lưu thẻ Audio
+let musicBtn; // Biến lưu nút nhạc
+
+// 1. Định nghĩa hàm phát nhạc TOÀN CỤC (để Iframe gọi được ngay lập tức)
+window.playAudioExternally = function() {
+    if (bgAudio) {
+        // Cố gắng phát nhạc
+        bgAudio.play().then(() => {
+            console.log("Music started successfully!");
+            if (musicBtn) musicBtn.classList.add('playing');
+        }).catch(error => {
+            console.warn("Trình duyệt chặn Autoplay (Edge/Chrome strict mode):", error);
+            // Nếu vẫn bị chặn, ta không làm gì được hơn ngoài việc chờ user bấm nút nhạc thủ công
+        });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 2. Kiểm tra nếu đã có nhạc thì thôi
     if (document.getElementById('bg-music')) return;
 
-    // 2. Tạo thẻ Audio
-    const audio = document.createElement('audio');
-    audio.id = 'bg-music';
-    audio.src = songSrc;
-    audio.loop = true; 
-    audio.volume = 0.5; 
-    document.body.appendChild(audio);
+    // 3. Tạo thẻ Audio
+    bgAudio = document.createElement('audio');
+    bgAudio.id = 'bg-music';
+    bgAudio.src = songSrc;
+    bgAudio.loop = true; 
+    bgAudio.volume = 0.5; 
+    document.body.appendChild(bgAudio);
 
-    // 3. Tạo nút Bật/Tắt nhạc
-    const btn = document.createElement('div');
-    btn.className = 'music-toggle-btn';
-    btn.innerHTML = '🎵'; 
-    btn.title = "Hòa Nhịp Giáng Sinh";
-    document.body.appendChild(btn);
+    // 4. Tạo nút Bật/Tắt nhạc (Giao diện)
+    musicBtn = document.createElement('div');
+    musicBtn.className = 'music-toggle-btn';
+    musicBtn.innerHTML = '🎵'; 
+    musicBtn.title = "Hòa Nhịp Giáng Sinh";
+    document.body.appendChild(musicBtn);
 
-    // Hàm bật nhạc (Dùng chung)
-    const playMusic = () => {
-        audio.play().then(() => {
-            btn.classList.add('playing');
-        }).catch(error => {
-            console.log("Chờ tương tác người dùng...");
-        });
-    };
-
-    // 4. Xử lý khi bấm nút
-    btn.onclick = () => {
-        if (audio.paused) {
-            playMusic();
+    // 5. Xử lý khi bấm nút tròn trên màn hình (Thủ công)
+    musicBtn.onclick = () => {
+        if (bgAudio.paused) {
+            bgAudio.play();
+            musicBtn.classList.add('playing'); 
         } else {
-            audio.pause();
-            btn.classList.remove('playing'); 
+            bgAudio.pause();
+            musicBtn.classList.remove('playing'); 
         }
     };
 
-    // 5. Cố gắng tự phát ngay lập tức (thường sẽ bị chặn)
-    playMusic();
-
-    // 6. [QUAN TRỌNG] Tạo hàm toàn cục để trang con (welcome.html) gọi được
-    window.playAudioExternally = function() {
-        if (audio.paused) {
-            playMusic();
-        }
-    };
-}
-
-window.addEventListener('load', initMusicPlayer);
+    // 6. Thử tự động phát nhẹ (thường sẽ fail trên Chrome/Edge nhưng cứ thử)
+    bgAudio.play().then(() => {
+        musicBtn.classList.add('playing');
+    }).catch(() => {
+        // Im lặng chấp nhận số phận nếu chưa có tương tác
+    });
+});
