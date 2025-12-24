@@ -41,16 +41,17 @@
     <script>
         // Hàm xử lý khi bấm nút Vào
         function enterSite() {
+            // --- ƯU TIÊN SỐ 1: BẬT NHẠC NGAY LẬP TỨC ---
+            // Gọi càng sớm càng tốt để trình duyệt không chặn
+            if (window.parent && window.parent.playAudioExternally) {
+                window.parent.playAudioExternally();
+            }
+
             const nameInput = document.getElementById('guestName');
             const name = nameInput.value.trim();
 
             if (name) {
-                // 1. [MỚI] Kích hoạt nhạc ở trang mẹ (index.html) ngay khi bấm nút
-                if (window.parent && window.parent.playAudioExternally) {
-                    window.parent.playAudioExternally();
-                }
-
-                // 2. [MỚI] Dùng sessionStorage (Tắt tab là mất dữ liệu -> Fix lỗi lưu cũ)
+                // Dùng sessionStorage (Tắt trình duyệt là mất tên -> Fix lỗi lưu cũ)
                 sessionStorage.setItem('guestName', name);
                 
                 // Hiệu ứng mờ dần
@@ -58,7 +59,7 @@
                 document.body.style.transition = "opacity 1s ease";
                 
                 setTimeout(() => {
-                    // Chuyển hướng trong iframe
+                    // Chuyển hướng TRONG IFRAME (Không dùng .top)
                     window.location.href = 'card.html';
                 }, 1000);
             } else {
@@ -79,6 +80,6 @@
                 enterSite();
             }
         });
-    </script>>
+    </script>
 </body>
 </html>
