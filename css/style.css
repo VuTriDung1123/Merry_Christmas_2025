@@ -1,28 +1,72 @@
+/* ============================================================ */
+/* STYLE CHUNG & SỬA LỖI GIẬT MÀN HÌNH (FINAL FIX)    */
+/* ============================================================ */
+
+html {
+    /* Ép thanh cuộn dọc LUÔN HIỆN diện. 
+       Việc này chiếm sẵn 1 khoảng không gian cố định bên phải, 
+       giúp nội dung không bị nhảy khi chuyển trang dài/ngắn */
+    overflow-y: scroll; 
+    
+    /* Chặn cuộn ngang tuyệt đối */
+    overflow-x: hidden;
+    
+    scroll-behavior: smooth;
+    height: 100%; /* Đảm bảo chiều cao full */
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #0d112b; /* Nền tối xanh đậm */
-    overflow: hidden; /* Chặn thanh cuộn */
-    height: 100vh;
+    background-color: #0d112b;
+    
+    /* QUAN TRỌNG: Dùng width 100% thay vì 100vw 
+       (100vw sẽ tính cả bề rộng thanh cuộn -> gây tràn ngang -> gây giật) */
+    width: 100%; 
+    min-height: 100vh;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; <-- BỎ dòng này đi để tránh lỗi nhảy khi nội dung dài */
+    
     font-family: 'Arial', sans-serif;
     position: relative;
+    box-sizing: border-box;
 }
 
-/* --- Cây thông SVG --- */
+/* --- HỘP CHỨA TUYẾT --- */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Dùng right/bottom: 0 thay vì width/height 100% để bám sát khung nhìn */
+    right: 0;
+    bottom: 0;
+    overflow: hidden !important; 
+    z-index: 1; 
+    pointer-events: none; 
+}
+
+/* Đảm bảo nội dung chính nằm trên tuyết */
+.main-container, .grid-container, .tree-container, h1, a.card, .message {
+    position: relative;
+    z-index: 10; 
+}
+
+/* --- Cây thông SVG (Trang Math/Std) --- */
 .tree-container {
     width: 300px;
     height: 400px;
     position: relative;
     z-index: 2;
+    /* Thêm margin để không bị dính sát khi màn hình nhỏ */
+    margin: 20px 0; 
 }
 
 svg path {
     fill: none;
-    stroke: #d4af37; /* Màu vàng kim */
+    stroke: #d4af37;
     stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -39,25 +83,24 @@ svg path {
     animation: fadeInStar 1s ease-in-out 3.5s forwards;
 }
 
-@keyframes drawTree {
-    to { stroke-dashoffset: 0; }
-}
-
+@keyframes drawTree { to { stroke-dashoffset: 0; } }
 @keyframes fadeInStar {
     from { opacity: 0; transform: scale(0); transform-origin: center; }
     to { opacity: 1; transform: scale(1); transform-origin: center; fill: #d4af37; }
 }
 
-/* --- Chữ chúc mừng --- */
+/* --- Chữ chúc mừng & GIF --- */
 .message {
     font-family: 'Great Vibes', cursive;
     color: #fff;
     font-size: 3rem;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Thêm khoảng trống dưới */
     z-index: 2;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     opacity: 0;
     animation: fadeInUp 2s ease-out 4s forwards;
+    text-align: center; /* Căn giữa chữ */
 }
 
 @keyframes fadeInUp {
@@ -65,7 +108,6 @@ svg path {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Ông già Noel --- */
 .santa-claus {
     position: absolute;
     bottom: 20px;
@@ -73,20 +115,40 @@ svg path {
     width: 150px;
     height: auto;
     z-index: 3;
+    max-width: 30vw; 
 }
 
 /* --- Tuyết rơi --- */
 .snowflake {
-    position: absolute;
-    top: -20px;
+    /* Tuyệt đối không dùng position ở đây, để JS xử lý trong snow-container */
     color: #fff;
     user-select: none;
     pointer-events: none;
-    z-index: 1;
     animation-name: fall;
     animation-timing-function: linear;
+    position: absolute; /* Vẫn cần absolute để bay trong container */
 }
 
 @keyframes fall {
-    to { transform: translateY(105vh); }
+    to { transform: translateY(110vh); } /* Rơi quá màn hình một chút */
+}
+
+/* --- THANH CUỘN ĐẸP --- */
+::-webkit-scrollbar {
+    width: 12px; /* Luôn giữ độ rộng này */
+    background-color: #0d112b;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #f1c40f, #e74c3c);
+    border-radius: 6px;
+    border: 3px solid #0d112b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ffd700, #ff6b6b);
 }

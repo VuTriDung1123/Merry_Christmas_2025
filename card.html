@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Giáng Sinh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/card.css">
+</head>
+<body>
+
+    <button class="skip-btn" onclick="goToMenu()">Bỏ qua >></button>
+
+    <div class="book" id="book">
+        
+        <div id="p1" class="paper">
+            <div class="front cover-page">
+                <div class="title-cover">Merry<br>Christmas</div>
+                <img src="pictures/tree_christmas_first_page.png" alt="Tree Cover" class="tree-cover">
+                </div>
+            
+            <div class="back">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Gửi <span id="receiver-name">Bạn</span>,</h2>
+                    <p>Mùa đông năm nay có lạnh không?</p>
+                    <p>Hy vọng tấm thiệp nhỏ này sẽ mang chút hơi ấm đến với bạn.</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+        </div>
+
+        <div id="p2" class="paper">
+            <div class="front">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Khoảnh Khắc</h2>
+                    <p>Một năm vừa qua chắc hẳn bạn đã nỗ lực rất nhiều.</p>
+                    <p>Hãy tạm gác lại âu lo để tận hưởng mùa lễ hội nhé.</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+            <div class="back">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Sẻ Chia</h2>
+                    <p>Giáng sinh là dịp để trao đi yêu thương.</p>
+                    <p>Cảm ơn vì sự hiện diện của bạn trong cuộc sống này.</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+        </div>
+
+        <div id="p3" class="paper">
+            <div class="front">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Niềm Tin</h2>
+                    <p>Ông già Noel không chỉ mang quà đến.</p>
+                    <p>Ông ấy mang đến niềm tin vào những điều kỳ diệu.</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+            <div class="back">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Hy Vọng</h2>
+                    <p>Chúc cho mọi ước mơ thầm kín nhất của bạn sẽ sớm thành hiện thực.</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+        </div>
+
+        <div id="p4" class="paper">
+            <div class="front">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Nụ Cười</h2>
+                    <p>Bạn biết không? Nụ cười của bạn còn rực rỡ hơn cả ánh đèn trên cây thông đấy!</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+            <div class="back">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Sắp Đến Rồi...</h2>
+                    <p>Chỉ còn một trang nữa thôi là cánh cửa thế giới Giáng Sinh sẽ mở ra.</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+        </div>
+
+        <div id="p5" class="paper">
+            <div class="front">
+                <img src="pictures/top_page_card.png" class="deco-top">
+                <div class="content-box">
+                    <h2>Lời Kết</h2>
+                    <p>Cảm ơn bạn đã kiên nhẫn đọc hết tấm thiệp này.</p>
+                    <p>Bây giờ, hãy chọn một cây thông cho riêng mình nhé!</p>
+                </div>
+                <img src="pictures/bottom_page_card.png" class="deco-bottom">
+            </div>
+            
+            <div class="back final-page">
+                <div class="content-box" style="z-index: 10;"> 
+                    <h2 style="font-size: 3.5rem; margin-bottom: 10px; font-family: 'Great Vibes', cursive;">Ready?</h2>
+                    
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">Bữa tiệc đã sẵn sàng...</p>
+                    
+                    <button class="menu-btn" onclick="goToMenu()" style="box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); border: 2px solid #fff;">
+                        Chọn Cây Thông Ngay 🎄
+                    </button>
+
+                    <div class="final-wish">
+                        <p>Chúc bạn & gia đình</p>
+                        <p style="color: #ffd700; font-size: 1.8rem; margin-top: 5px;">Giáng Sinh An Lành</p>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/card.js"></script>
+    <script>
+        const guestName = localStorage.getItem('guestName');
+        if (guestName) document.getElementById('receiver-name').textContent = guestName;
+
+        function goToMenu() {
+            document.body.style.opacity = 0;
+            document.body.style.transition = "opacity 0.8s";
+            setTimeout(() => window.location.href = "index.html", 800);
+        }
+    </script>
+</body>
+</html>

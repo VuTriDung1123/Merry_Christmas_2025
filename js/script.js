@@ -29,4 +29,4 @@ function createSnowflake() {
 }
 
 // Bắt đầu tạo tuyết (cứ 100ms tạo 1 bông)
-setInterval(createSnowflake, 100);
+//setInterval(createSnowflake, 100);
