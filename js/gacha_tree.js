@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const treeContainer = document.getElementById('gacha-tree-container');
+    const randomBtn = document.getElementById('randomBtn'); // Get the button element
 
     // 1. Danh sách 17 loại tiền tệ
     const gachaItems = [
@@ -24,61 +25,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalCells = 118;
     const minAppearance = 6; 
-
-    // 2. TẠO POOL ẢNH (Giữ nguyên logic cũ)
     let imagePool = [];
-    gachaItems.forEach(item => {
-        for (let i = 0; i < minAppearance; i++) imagePool.push(item);
-    });
-    while (imagePool.length < totalCells) {
-        imagePool.push(gachaItems[Math.floor(Math.random() * gachaItems.length)]);
-    }
-    // Trộn (Shuffle)
-    for (let i = imagePool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [imagePool[i], imagePool[j]] = [imagePool[j], imagePool[i]];
-    }
 
-    // --- 3. LOGIC XẾP CÂY MỚI (CHIA 3 PHẦN) ---
-    let poolIndex = 0;
-
-    // Hàm hỗ trợ tạo 1 hàng
-    function createRow(size, specialClass = '') {
-        const rowDiv = document.createElement('div');
-        rowDiv.classList.add('tree-row');
+    // --- FUNCTION: Initialize and Shuffle Pool ---
+    function initializePool() {
+        imagePool = []; // Reset pool
         
-        for (let i = 0; i < size; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('gacha-cell');
-            if (specialClass) cell.classList.add(specialClass); // Thêm class cho thân/đế
-
-            const imgName = imagePool[poolIndex];
-            poolIndex++;
-
-            const img = document.createElement('img');
-            img.src = `gacha_pics/${imgName}`;
-            img.classList.add('gacha-img');
-            cell.title = imgName.replace('.png', '').replace(/_/g, ' ');
-
-            cell.appendChild(img);
-            rowDiv.appendChild(cell);
+        // Add minimum required items
+        gachaItems.forEach(item => {
+            for (let i = 0; i < minAppearance; i++) imagePool.push(item);
+        });
+        
+        // Fill the rest randomly
+        while (imagePool.length < totalCells) {
+            imagePool.push(gachaItems[Math.floor(Math.random() * gachaItems.length)]);
         }
-        treeContainer.appendChild(rowDiv);
+        
+        // Shuffle logic
+        for (let i = imagePool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [imagePool[i], imagePool[j]] = [imagePool[j], imagePool[i]];
+        }
     }
 
-    // PHẦN A: TÁN LÁ (Top Pyramid)
-    // Tổng 105 ô = tháp từ 1 đến 14 hàng
-    for (let row = 1; row <= 14; row++) {
-        createRow(row);
+    // --- FUNCTION: Build the Tree ---
+    function buildGachaTree() {
+        // Clear existing tree content
+        treeContainer.innerHTML = '';
+        
+        let poolIndex = 0;
+
+        // Helper function to create a row
+        function createRow(size, specialClass = '') {
+            const rowDiv = document.createElement('div');
+            rowDiv.classList.add('tree-row');
+            
+            for (let i = 0; i < size; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('gacha-cell');
+                if (specialClass) cell.classList.add(specialClass);
+
+                // Check if we have items left in pool, otherwise wrap around or pick random
+                // (Though totalCells logic should prevent running out)
+                const imgName = imagePool[poolIndex % imagePool.length]; 
+                poolIndex++;
+
+                const img = document.createElement('img');
+                img.src = `gacha_pics/${imgName}`;
+                img.classList.add('gacha-img');
+                cell.title = imgName.replace('.png', '').replace(/_/g, ' ');
+
+                cell.appendChild(img);
+                rowDiv.appendChild(cell);
+            }
+            treeContainer.appendChild(rowDiv);
+        }
+
+        // PHẦN A: TÁN LÁ (Top Pyramid) - 1 to 14 rows
+        for (let row = 1; row <= 14; row++) {
+            createRow(row);
+        }
+
+        // PHẦN B: THÂN CÂY (Trunk) - 2 rows of 3
+        for (let r = 0; r < 2; r++) {
+            createRow(3, 'trunk-cell');
+        }
+
+        // PHẦN C: ĐẾ CÂY (Base) - 1 row of 7
+        createRow(7, 'base-cell');
     }
 
-    // PHẦN B: THÂN CÂY (Trunk)
-    // 2 hàng, mỗi hàng 3 ô
-    for (let r = 0; r < 2; r++) {
-        createRow(3, 'trunk-cell');
-    }
+    // --- INITIAL RUN ---
+    initializePool();
+    buildGachaTree();
 
-    // PHẦN C: ĐẾ CÂY (Base)
-    // 1 hàng ngang 7 ô
-    createRow(7, 'base-cell');
+    // --- EVENT LISTENER FOR RANDOM BUTTON ---
+    if(randomBtn) {
+        randomBtn.addEventListener('click', function() {
+            // Optional: Button visual feedback
+            this.style.transform = 'rotate(360deg)';
+            setTimeout(() => { this.style.transform = 'none'; }, 300);
+
+            // Re-shuffle and Re-build
+            initializePool();
+            buildGachaTree();
+        });
+    }
 });

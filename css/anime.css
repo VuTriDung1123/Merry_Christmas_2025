@@ -109,3 +109,31 @@ h1 {
 @media (max-width: 768px) {
     .waifu-tile { width: 30px; height: 30px; }
 }
+
+/* Nút Random Waifu */
+.random-btn {
+    position: fixed;
+    top: 70px; /* Nằm dưới nút Menu (top: 20px + cao 50px) */
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    font-family: 'Kosugi Maru', sans-serif;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.random-btn:hover {
+    background: #fff;
+    color: #fd79a8;
+    box-shadow: 0 0 15px #ffeaa7;
+}
+
+.random-btn:active {
+    transform: scale(0.95);
+}
