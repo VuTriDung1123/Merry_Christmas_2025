@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hệ Lập Trình Max Pro</title>
+
+    <style>
+        /* ===== CẤU HÌNH CHUNG ===== */
+        body {
+            margin: 0;
+            background-color: #101010;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        /* ===== MENU ĐIỀU HƯỚNG ===== */
+        .nav-link {
+            position: absolute;
+            left: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            z-index: 100;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+        .nav-link:hover { opacity: 1; color: #ffd700; }
+        .nav-home { top: 20px; }
+        .nav-card { top: 60px; }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* ===== RGB FLOW (Hiệu ứng đổi màu) ===== */
+        @keyframes rgbFlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* ===== CÂY THÔNG CODE ===== */
+        .code-tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            /* Giữ nguyên kích thước chữ như bạn yêu cầu */
+            font-size: 19px; 
+            line-height: 1.5;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            
+            animation: rgbFlow 5s linear infinite;
+        }
+
+        .line {
+            white-space: nowrap;
+            text-align: center;
+            text-shadow: 0 0 5px rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+            cursor: default;
+        }
+        
+        .line:hover {
+            transform: scale(1.15); /* Phóng to khi di chuột */
+            text-shadow: 0 0 15px currentColor;
+            z-index: 10;
+        }
+
+        /* ===== NGÔI SAO ===== */
+        .star-code {
+            color: #ffd700;
+            font-size: 60px;
+            margin-bottom: 5px;
+            line-height: 1;
+            text-shadow: 0 0 20px #ffd700;
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.2); opacity: 1; } }
+
+        /* ===== MÀU CÚ PHÁP ===== */
+        .k { color: #ff79c6; }
+        .f { color: #f1fa8c; }
+        .s { color: #ffb86c; }
+        .c { color: #6272a4; }
+        .v { color: #8be9fd; }
+        .n { color: #bd93f9; }
+
+        /* ===== GỐC CÂY ===== */
+        .trunk {
+            color: #5d4037;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-top: 5px;
+            font-size: 24px;
+        }
+
+        /* ===== TEXT CUỐI ===== */
+        h1 {
+            color: #8be9fd;
+            margin-top: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+            text-shadow: 0 0 10px #8be9fd;
+            animation: rgbFlow 5s linear infinite reverse;
+        }
+
+        .typing { border-right: 3px solid #fff; animation: caret 0.8s step-end infinite; }
+        @keyframes caret { 50% { border-color: transparent; } }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 600px) {
+            .code-tree { font-size: 10px; } /* Mobile cần chữ nhỏ hơn để hiển thị hết dòng dài */
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="nav-link nav-home">🏠 Menu</a>
+    <a href="card.html" class="nav-link nav-card">📖 Thiệp</a>
+
+    <div class="container">
+        
+        <div class="star-code">★</div>
+
+        <div class="code-tree">
+            <div class="line"><span class="f">run</span>();</div>
+            <div class="line"><span class="k">var</span> <span class="v">joy</span> = <span class="v">true</span>;</div>
+            <div class="line"><span class="k">return</span> <span class="s">"Santa_Claus"</span>;</div>
+
+            <div class="line"><span class="k">try</span> {</div>
+            <div class="line"><span class="v">git</span> <span class="k">checkout</span> <span class="s">"holiday"</span>;</div>
+            <div class="line"><span class="f">deploy</span>(<span class="s">"North_Pole_Server"</span>);</div>
+            
+            <div class="line"><span class="k">while</span>(<span class="v">chimney</span>.<span class="f">isOpen</span>() && <span class="v">kids</span>.<span class="f">areSleeping</span>()) {</div>
+            <div class="line"><span class="f">deliver</span>(<span class="s">"Giant_Presents_For_Everyone_On_Earth"</span>); }</div>
+            
+            <div class="line"><span class="k">await</span> <span class="n">2025</span>;</div>
+            <div class="line"><span class="v">user</span>.<span class="f">setMood</span>(<span class="s">"Extremely_Happy"</span>);</div>
+            
+            <div class="line"><span class="v">tree</span>.<span class="f">mount</span>(<span class="s">"Ultra_Bright_RGB_Gaming_Lights"</span>, <span class="s">"Rainbow_Mode"</span>);</div>
+            
+            <div class="line"><span class="v">database</span>.<span class="f">executeQuery</span>(<span class="s">"SELECT * FROM Wishes WHERE Status = 'Granted'"</span>);</div>
+            
+            <div class="line"><span class="f">sendNotification</span>(<span class="s">"To: My_Best_Friend"</span>, <span class="s">"Sending_Infinite_Love_&_Luck_❤️"</span>);</div>
+            
+            <div class="line"><span class="v">System</span>.<span class="v">out</span>.<span class="f">println</span>(<span class="s">"&gt;&gt;&gt; MERRY_CHRISTMAS_AND_HAPPY_NEW_YEAR &lt;&lt;&lt;"</span>);</div>
+            
+            <div class="line"><span class="k">throw new</span> <span class="f">GlobalHappinessOverflowException</span>(<span class="s">"Enjoy_The_Moment!"</span>);</div>
+            
+            <div class="trunk">|||</div>
+            <div class="trunk">|||</div>
+            <div class="trunk">|||</div>
+        </div>
+
+        <h1>&lt;MerryChristmas /&gt;<span class="typing"></span></h1>
+
+    </div>
+
+    <div id="snow-container"></div>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

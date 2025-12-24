@@ -150,3 +150,26 @@ svg path {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to bottom, #ffd700, #ff6b6b);
 }
+
+/* Đảm bảo hình ảnh/canvas không bao giờ to hơn màn hình */
+img, canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Container chính của cây thông */
+.container {
+    width: 100%;
+    max-width: 800px; /* Giới hạn chiều rộng trên PC */
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box; /* Tính padding vào trong width */
+}
+
+/* Nút Home, Nút Nhạc trên Mobile cần to hơn để dễ bấm */
+@media screen and (max-width: 768px) {
+    a[href="index.html"], a[href="card.html"] {
+        font-size: 1.2rem !important;
+        padding: 10px !important;
+    }
+}
