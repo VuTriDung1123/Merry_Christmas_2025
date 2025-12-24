@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bộ Sưu Tập Giáng Sinh</title>
-    
     <link rel="stylesheet" href="css/menu.css">
-    
 </head>
 <body>
     <div id="snow-container"></div>
+    
     <div style="text-align: center; margin-bottom: 20px;">
         <a href="card.html" style="color: #fff; text-decoration: none; font-size: 1.2rem; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid #d4af37;">
             📖 Xem lại thiệp chúc
         </a>
     </div>
+
     <h1 id="greeting">🎄 Chọn Loại Cây Thông 🎄</h1>    
+    
     <div class="grid-container">
-        
         <a href="christmas_std.html" class="card" style="border-color: #d4af37;">
             <div class="card-content">
                 <div class="icon">🎨</div>
@@ -25,7 +25,6 @@
                 <p>Cây thông vẽ nét & Ông già Noel.</p>
             </div>
         </a>
-
         <a href="christmas_chem_table.html" class="card" style="border-color: #4cd137;">
             <div class="card-content">
                 <div class="icon">🧪</div>
@@ -33,7 +32,6 @@
                 <p>Cây thông xếp từ bảng tuần hoàn.</p>
             </div>
         </a>
-
         <a href="christmas_math.html" class="card" style="border-color: #00a8ff;">
             <div class="card-content">
                 <div class="icon">📐</div>
@@ -41,7 +39,6 @@
                 <p>Mô hình nón và các đường sinh.</p>
             </div>
         </a>
-
         <a href="christmas_3d.html" class="card" style="border-color: #f1c40f;">
             <div class="card-content">
                 <div class="icon" style="font-size: 3.5rem;">✨🧊</div> 
@@ -49,7 +46,6 @@
                 <p>Cây thông vòi rồng ánh sáng xoay chiều.</p>
             </div>
         </a>
-
         <a href="christmas_love.html" class="card" style="border-color: #ff1744;">
             <div class="card-content">
                 <div class="icon">💖</div>
@@ -57,7 +53,6 @@
                 <p>Cây thông tương tác ánh sáng.</p>
             </div>
         </a>
-
         <a href="christmas_moba.html" class="card" style="border-color: #e74c3c;">
             <div class="card-content">
                 <div class="icon" style="font-size: 4rem;">🛡️💀</div> 
@@ -65,7 +60,6 @@
                 <p>Cây thông "Defeat" & Ngôi sao Rank Đồng.</p>
             </div>
         </a>
-
         <a href="christmas_moba_victory.html" class="card" style="border-color: #f1c40f;">
             <div class="card-content">
                 <div class="icon" style="font-size: 4rem;">🏆⚔️</div> 
@@ -73,7 +67,6 @@
                 <p>Cây thông "Victory" & Ngôi sao Cao Thủ.</p>
             </div>
         </a>
-
         <a href="christmas_gacha.html" class="card" style="border-color: #d63384;">
             <div class="card-content">
                 <div class="icon" style="font-size: 4rem;">💎💳</div> 
@@ -81,27 +74,17 @@
                 <p>Cây thông 118 vật phẩm & Ngôi sao Bank Card.</p>
             </div>
         </a>
-
     </div>
 
     <script src="js/script.js"></script>
 
-
     <script>
-    // Kiểm tra xem đã có tên chưa
     const guestName = localStorage.getItem('guestName');
-    
     if (guestName) {
-        // Nếu có tên thì đổi lời chào
         document.getElementById('greeting').innerHTML = `🎄 Chào <span>${guestName}</span>, Giáng Sinh An Lành! 🎄`;
-        // Tô màu vàng cho tên
         document.querySelector('#greeting span').style.color = '#fff'; 
         document.querySelector('#greeting span').style.textShadow = '0 0 10px #fff';
-    } else {
-        // Nếu chưa nhập tên (cố tình vào thẳng index.html), đá về trang welcome
-        // Bạn có thể bỏ dòng này nếu muốn cho phép vào thẳng
-        // window.location.href = 'welcome.html'; 
     }
-</script>
+    </script>
 </body>
 </html>
