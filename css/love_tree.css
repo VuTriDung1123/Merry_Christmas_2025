@@ -39,3 +39,19 @@ canvas {
     color: #ff4d4d; /* Chữ bên phải màu đỏ hồng */
     text-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
 }
+
+/* --- MOBILE FIX cho Love Tree --- */
+@media screen and (max-width: 768px) {
+    .Christmas_love {
+        font-size: 1.8rem; /* Giảm font chữ */
+        width: 95%; /* Mở rộng khung chứa chữ ra sát mép */
+        top: 10%; /* Đẩy lên cao hơn để không đè vào cây */
+        flex-direction: column; /* Xếp chữ dọc thay vì ngang nếu cần, hoặc giữ nguyên nhưng nhỏ lại */
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .Christmas_love span {
+        text-align: center;
+    }
+}

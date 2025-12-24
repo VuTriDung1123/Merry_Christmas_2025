@@ -142,3 +142,36 @@ p { font-size: 1.4rem; line-height: 1.5; margin: 8px 0; }
 /* TUYẾT */
 #snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 9999; pointer-events: none; }
 .snowflake { position: absolute; background-color: #fff; border-radius: 50%; opacity: 0.8; pointer-events: none; top: -10px; box-shadow: 0 0 5px #fff; }
+
+/* --- MOBILE FIX cho Thiệp --- */
+@media screen and (max-width: 768px) {
+    .book {
+        /* Thu nhỏ sách cho vừa màn hình điện thoại */
+        width: 320px !important; 
+        height: 480px !important;
+        max-width: 90vw; /* Không bao giờ vượt quá 90% chiều rộng màn hình */
+    }
+
+    .title-cover {
+        font-size: 3rem !important; /* Tên bìa nhỏ lại */
+    }
+
+    h2 {
+        font-size: 1.8rem !important; /* Tiêu đề nội dung nhỏ lại */
+    }
+
+    p {
+        font-size: 1rem !important; /* Chữ nội dung nhỏ lại */
+        line-height: 1.3 !important;
+    }
+
+    .menu-btn {
+        padding: 10px 20px !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Ẩn bớt trang trí nếu màn hình quá lùn */
+    .deco-top, .deco-bottom {
+        max-height: 50px !important;
+    }
+}

@@ -173,3 +173,32 @@ img, canvas {
         padding: 10px !important;
     }
 }
+
+/* --- RESPONSIVE CHUNG CHO MOBILE (Thêm vào cuối style.css) --- */
+@media screen and (max-width: 768px) {
+    /* 1. Ngăn chặn tràn ngang tuyệt đối */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    /* 2. Thu nhỏ tiêu đề lớn */
+    h1 {
+        font-size: 1.8rem !important; /* Giảm từ 3.5rem xuống */
+        margin-top: 15px !important;
+    }
+
+    /* 3. Nút Menu & Back gọn hơn */
+    a[href="menu.html"], .back-btn, .nav-link {
+        font-size: 1rem !important;
+        padding: 5px 10px !important;
+        top: 10px !important;
+        left: 10px !important;
+    }
+
+    /* 4. Điều chỉnh tuyết rơi không làm vướng cảm ứng */
+    #snow-container {
+        pointer-events: none;
+    }
+}

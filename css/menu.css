@@ -144,15 +144,30 @@ p {
 /* ==========================================================================
    FIX RIÊNG CHO ĐIỆN THOẠI NHỎ (Dưới 400px)
    ========================================================================== */
-@media (max-width: 400px) {
+/* --- MOBILE FIX cho Menu --- */
+@media screen and (max-width: 600px) {
     .grid-container {
-        gap: 10px; /* Giảm khoảng cách cho đỡ tốn chỗ */
+        /* Chuyển thành 2 cột trên điện thoại */
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important;
+        padding: 10px !important;
     }
+
     .card {
-        min-height: 180px; /* Thẻ ngắn lại xíu */
-        padding: 10px 5px;
+        min-height: 160px !important; /* Thẻ ngắn lại */
+        padding: 10px 5px !important;
     }
-    .icon { font-size: 2rem; }
-    h2 { font-size: 1.1rem; }
-    p { font-size: 0.8rem; }
+
+    .icon {
+        font-size: 2rem !important; /* Icon nhỏ lại */
+    }
+
+    .card h2 {
+        font-size: 1rem !important;
+    }
+
+    .card p {
+        font-size: 0.7rem !important;
+        display: none; /* Mẹo: Ẩn bớt mô tả trên điện thoại cho đỡ rối, chỉ hiện tên */
+    }
 }
