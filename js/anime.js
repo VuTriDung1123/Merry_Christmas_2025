@@ -1,4 +1,4 @@
-// 1. DANH SÁCH ẢNH (59 TÊN)
+// 1. DANH SÁCH ẢNH GỐC
 const waifuList = [
     "ei.jpg", "gawr_gura.jpg", "hatsune_miku.jpg", "hutao.jpg", "pandoru.jpg",
     "shinobu.jpg", "yae_miko.jpg", "yor_forger.jpg", "kanna_kamui.jpg", "tohru.jpg",
@@ -14,67 +14,65 @@ const waifuList = [
     "citlati.jpg", "salor_moon.jpg", "makima.jpg", "ackerman_mikasa.jpg"
 ];
 
-// 2. NHÂN ĐÔI DANH SÁCH -> 118 ẢNH
+// 2. TẠO DANH SÁCH ĐẦY ĐỦ (118 ẢNH)
 let fullList = [...waifuList, ...waifuList];
 
-// 3. THUẬT TOÁN XÁO TRỘN (FISHER-YATES SHUFFLE) - Random cực đều
-for (let i = fullList.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [fullList[i], fullList[j]] = [fullList[j], fullList[i]];
+// Cấu trúc cây
+const treeStructure = [1, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18, 8, 8, 8];
+const root = document.getElementById('treeRoot');
+
+// --- HÀM XÁO TRỘN MẢNG (Fisher-Yates Shuffle) ---
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
-// 4. CẤU TRÚC CÂY THÔNG (Tổng 118 ô)
-const treeStructure = [
-    1,  // Đỉnh
-    2,
-    3,
-    4,
-    6,
-    8,
-    10,
-    12,
-    14,
-    16,
-    18, // Tán lá rộng nhất
-    8,  // Gốc
-    8,  // Gốc
-    8   // Gốc
-];
-
-const root = document.getElementById('treeRoot');
-let currentIndex = 0;
-
-// 5. VẼ CÂY TỪ DANH SÁCH ĐÃ RANDOM
-treeStructure.forEach(count => {
-    const row = document.createElement('div');
-    row.classList.add('tree-row');
-
-    for (let i = 0; i < count; i++) {
-        if (currentIndex < fullList.length) {
-            const fileName = fullList[currentIndex];
-            const displayName = fileName.replace('.jpg', '').replace(/_/g, ' ');
-
-            const tile = document.createElement('div');
-            tile.classList.add('waifu-tile');
-            tile.setAttribute('data-name', displayName);
-
-            const img = document.createElement('img');
-            img.src = `pandoru/${fileName}`; 
-            img.alt = displayName;
-            
-            img.onerror = function() {
-                this.src = 'https://via.placeholder.com/50?text=Waifu';
-            };
-
-            tile.appendChild(img);
-            row.appendChild(tile);
-            currentIndex++;
+// --- HÀM VẼ LẠI CÂY ---
+function buildTree() {
+    // Xóa hết nội dung cũ chỉ giữ lại ngôi sao
+    root.innerHTML = '<div class="star-top">⭐</div>';
+    
+    let currentIndex = 0;
+    treeStructure.forEach(count => {
+        const row = document.createElement('div');
+        row.classList.add('tree-row');
+        for (let i = 0; i < count; i++) {
+            if (currentIndex < fullList.length) {
+                const fileName = fullList[currentIndex];
+                const displayName = fileName.replace('.jpg', '').replace(/_/g, ' ');
+                const tile = document.createElement('div');
+                tile.classList.add('waifu-tile');
+                tile.setAttribute('data-name', displayName);
+                const img = document.createElement('img');
+                img.src = `pandoru/${fileName}`; 
+                img.alt = displayName;
+                img.onerror = function() { this.src = 'https://via.placeholder.com/50?text=Waifu'; };
+                tile.appendChild(img);
+                row.appendChild(tile);
+                currentIndex++;
+            }
         }
-    }
-    root.appendChild(row);
+        root.appendChild(row);
+    });
+}
+
+// === KHỞI CHẠY LẦN ĐẦU ===
+shuffleArray(fullList); // Xáo trộn ngay khi vào trang
+buildTree(); // Vẽ cây
+
+// === BẮT SỰ KIỆN NÚT RANDOM ===
+document.getElementById('randomBtn').addEventListener('click', function() {
+    // Hiệu ứng xoay nhẹ nút khi bấm
+    this.style.transform = 'rotate(360deg)';
+    setTimeout(() => { this.style.transform = 'none'; }, 300);
+
+    shuffleArray(fullList); // Xáo trộn lại danh sách
+    buildTree(); // Vẽ lại cây mới
 });
 
-// 6. HIỆU ỨNG MƯA SAKURA
+// 5. HIỆU ỨNG MƯA SAKURA (Giữ nguyên)
 function createSakura() {
     const sakura = document.createElement('div');
     sakura.classList.add('sakura');
