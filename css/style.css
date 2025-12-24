@@ -35,17 +35,16 @@ body {
     box-sizing: border-box;
 }
 
-/* --- HỘP CHỨA TUYẾT --- */
+/* --- HỘP CHỨA TUYẾT (QUAN TRỌNG: CỐ ĐỊNH VÀ KHÔNG TRÀN) --- */
 #snow-container {
     position: fixed;
     top: 0;
     left: 0;
-    /* Dùng right/bottom: 0 thay vì width/height 100% để bám sát khung nhìn */
-    right: 0;
-    bottom: 0;
-    overflow: hidden !important; 
-    z-index: 1; 
-    pointer-events: none; 
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Cắt bỏ mọi thứ rơi ra ngoài -> KHÔNG BAO GIỜ GIẬT */
+    z-index: 1; /* Nằm trên nền nhưng dưới nội dung chính */
+    pointer-events: none; /* Chuột bấm xuyên qua */
 }
 
 /* Đảm bảo nội dung chính nằm trên tuyết */
@@ -118,15 +117,14 @@ svg path {
     max-width: 30vw; 
 }
 
-/* --- Tuyết rơi --- */
+/* --- HẠT TUYẾT (CHẤM TRÒN NHỎ) --- */
 .snowflake {
-    /* Tuyệt đối không dùng position ở đây, để JS xử lý trong snow-container */
-    color: #fff;
-    user-select: none;
+    position: absolute;
+    background-color: #fff; /* Màu trắng */
+    border-radius: 50%; /* Bo tròn thành chấm bi */
+    opacity: 0.8;
     pointer-events: none;
-    animation-name: fall;
-    animation-timing-function: linear;
-    position: absolute; /* Vẫn cần absolute để bay trong container */
+    top: -10px; /* Xuất phát từ trên nóc màn hình */
 }
 
 @keyframes fall {
