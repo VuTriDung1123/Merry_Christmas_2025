@@ -1,0 +1,98 @@
+/* ===== CẤU HÌNH CHUNG ===== */
+body { 
+    background-color: #202028;
+    font-family: 'Press Start 2P', cursive, 'Courier New', monospace;
+    overflow: hidden;
+    user-select: none;
+    margin: 0;
+}
+
+.pixel-container {
+    display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;
+    position: relative;
+}
+
+/* ===== LƯỚI VẼ CÂY THÔNG (ĐÃ CHỈNH TO HƠN) ===== */
+.grid-pixel {
+    display: grid;
+    /* Tăng lên 25 cột, mỗi cột 14px */
+    grid-template-columns: repeat(25, 14px); 
+    grid-auto-rows: 14px;
+    gap: 1px;
+    margin-bottom: 20px;
+    position: relative; z-index: 10;
+}
+
+.pixel { width: 100%; height: 100%; }
+
+/* Bảng màu */
+.tr { background: transparent; }
+.gr { background: #00aa00; box-shadow: inset -2px -2px 0 rgba(0,0,0,0.3); } /* Lá */
+.br { background: #aa5500; } /* Thân */
+.ye { background: #ffff55; animation: starFlash 0.5s infinite alternate; } /* Sao */
+.re { background: #ff5555; animation: lightFlash 1s infinite; } /* Đèn đỏ */
+.bl { background: #5555ff; animation: lightFlash 1.5s infinite; } /* Đèn xanh */
+
+@keyframes starFlash { from { opacity: 0.8; } to { opacity: 1; transform: scale(1.1); } }
+@keyframes lightFlash { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.5); } }
+
+/* ===== QUÁI VẬT 8-BIT ===== */
+.virus {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: transparent;
+    z-index: 5;
+}
+
+.virus-purple {
+    color: #bd93f9;
+    box-shadow: 
+        20px 0, 32px 0,
+        16px 4px, 20px 4px, 24px 4px, 28px 4px, 32px 4px, 36px 4px,
+        12px 8px, 16px 8px, 24px 8px, 28px 8px, 36px 8px, 40px 8px,
+        12px 12px, 16px 12px, 20px 12px, 24px 12px, 28px 12px, 32px 12px, 36px 12px, 40px 12px,
+        12px 16px, 40px 16px,
+        16px 20px, 36px 20px,
+        20px 24px, 24px 24px, 28px 24px, 32px 24px;
+    bottom: 10%; left: -50px;
+    animation: moveRight 10s linear infinite, bounce 0.5s step-end infinite;
+}
+
+.virus-green {
+    color: #50fa7b;
+    box-shadow: 
+        16px 0, 36px 0,
+        4px 4px, 16px 4px, 36px 4px, 48px 4px,
+        4px 8px, 16px 8px, 20px 8px, 24px 8px, 28px 8px, 32px 8px, 36px 8px, 48px 8px,
+        4px 12px, 8px 12px, 12px 12px, 16px 12px, 20px 12px, 32px 12px, 36px 12px, 40px 12px, 44px 12px, 48px 12px,
+        16px 16px, 20px 16px, 24px 16px, 28px 16px, 32px 16px, 36px 16px,
+        12px 20px, 40px 20px,
+        8px 24px, 44px 24px;
+    bottom: 25%; right: -60px;
+    animation: moveLeft 12s linear infinite, bounce 0.6s step-end infinite;
+}
+
+@keyframes moveRight { from { left: -100px; } to { left: 110%; } }
+@keyframes moveLeft { from { right: -100px; } to { right: 110%; } }
+@keyframes bounce { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* ===== TIÊU ĐỀ ===== */
+h1 { 
+    font-family: 'Press Start 2P', cursive; color: #ffaa00; 
+    margin-top: 10px; text-shadow: 4px 4px #aa0000; font-size: 1.5rem;
+    text-transform: uppercase; z-index: 20;
+}
+
+.back-btn {
+    position: absolute; top: 20px; left: 20px; 
+    color: white; font-family: 'Press Start 2P'; text-decoration: none; font-size: 10px;
+    border: 2px solid #fff; padding: 10px; background: #000; z-index: 100;
+}
+.back-btn:hover { background: #fff; color: #000; }
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+    .grid-pixel { transform: scale(0.7); margin-bottom: 0; }
+    .virus { transform: scale(0.5); }
+    h1 { font-size: 1rem; margin-top: 0; }
+}
