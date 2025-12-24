@@ -137,3 +137,50 @@ h1 {
 .random-btn:active {
     transform: scale(0.95);
 }
+
+/* --- MOBILE FIX CHUNG CHO CÁC HỆ CÂY GRID --- */
+@media screen and (max-width: 768px) {
+    /* Thu nhỏ container */
+    .waifu-tree-container, #gacha-tree-container, #moba-tree-container {
+        transform: scale(0.7); /* Thu nhỏ toàn bộ cây xuống còn 70% */
+        transform-origin: top center; /* Thu nhỏ từ trên xuống */
+        margin-top: 10px;
+        width: 100%;
+        overflow: visible; /* Cho phép hiển thị nếu lỡ tràn nhẹ */
+    }
+
+    /* Thu nhỏ kích thước từng ô ảnh/icon */
+    .waifu-tile {
+        width: 25px !important; /* Gốc là 45px */
+        height: 25px !important;
+    }
+
+    .gacha-cell {
+        width: 25px !important; /* Gốc là 40px */
+        height: 25px !important;
+    }
+
+    .moba-icon {
+        width: 30px !important; /* Gốc là 60px */
+        height: 30px !important;
+    }
+    
+    /* Thu nhỏ khoảng cách giữa các ô */
+    .tree-row {
+        gap: 2px !important;
+    }
+
+    /* Thu nhỏ ngôi sao đỉnh */
+    .star-top, .bank-star, .star-icon, .grandmaster-icon {
+        font-size: 40px !important;
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    /* Tiêu đề nhỏ lại */
+    h1, .gacha-title, .moba-title {
+        font-size: 1.5rem !important;
+        word-wrap: break-word; /* Xuống dòng nếu chữ quá dài */
+        padding: 0 10px;
+    }
+}

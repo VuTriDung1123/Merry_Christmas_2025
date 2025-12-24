@@ -5,7 +5,10 @@ scene.fog = new THREE.FogExp2(0x1a0000, 0.02);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 // Camera
-camera.position.z = 20; 
+const isMobile = window.innerWidth < 768;
+camera.position.z = isMobile ? 35 : 20; 
+camera.position.y = isMobile ? 6 : 8; // Hạ thấp camera chút xíu trên mobile
+camera.lookAt(0, isMobile ? 2 : 5, 0);
 camera.position.y = 8;
 camera.lookAt(0, 5, 0);
 
