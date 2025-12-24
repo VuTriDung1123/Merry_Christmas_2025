@@ -1,0 +1,109 @@
+/* ===== CẤU HÌNH CHUNG ===== */
+body { 
+    margin: 0;
+    background: radial-gradient(circle, #1a1a2e, #16213e); 
+    font-family: sans-serif;
+    color: #fff;
+    overflow: hidden; /* Ẩn thanh cuộn */
+    height: 100vh;
+}
+
+/* ===== MENU ĐIỀU HƯỚNG ===== */
+.nav-link {
+    position: absolute;
+    left: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    z-index: 100;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+.nav-link:hover { opacity: 1; color: #00d2d3; }
+.nav-home { top: 20px; }
+.nav-card { top: 60px; }
+
+/* ===== CONTAINER ===== */
+.container {
+    padding-top: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* ===== CÂY THÔNG EQUALIZER ===== */
+.music-tree {
+    display: flex;
+    align-items: flex-end; /* Căn đáy các cột */
+    justify-content: center;
+    gap: 5px;
+    height: 400px;
+    filter: drop-shadow(0 0 10px rgba(0, 210, 211, 0.5));
+}
+
+.bar {
+    width: 15px;
+    background: linear-gradient(to top, #00d2d3, #2e86de);
+    border-radius: 5px 5px 0 0;
+    animation: equalize 0.5s infinite alternate ease-in-out;
+    box-shadow: 0 0 10px #00d2d3;
+}
+
+/* Tạo hình tam giác bằng cách giới hạn chiều cao max của từng cột */
+/* Cột giữa cao nhất (số 8), hai bên thấp dần */
+.bar:nth-child(1), .bar:nth-child(15) { height: 40px; animation-duration: 0.4s; }
+.bar:nth-child(2), .bar:nth-child(14) { height: 80px; animation-duration: 0.5s; }
+.bar:nth-child(3), .bar:nth-child(13) { height: 120px; animation-duration: 0.3s; }
+.bar:nth-child(4), .bar:nth-child(12) { height: 160px; animation-duration: 0.6s; }
+.bar:nth-child(5), .bar:nth-child(11) { height: 200px; animation-duration: 0.4s; }
+.bar:nth-child(6), .bar:nth-child(10) { height: 240px; animation-duration: 0.5s; }
+.bar:nth-child(7), .bar:nth-child(9)  { height: 280px; animation-duration: 0.3s; }
+
+/* Đỉnh cây (Cột số 8) */
+.bar:nth-child(8) { 
+    height: 320px; 
+    animation-duration: 0.2s; 
+    background: #ff9ff3; /* Đỉnh màu hồng nổi bật */
+    box-shadow: 0 0 15px #ff9ff3; 
+}
+
+@keyframes equalize {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1); }
+}
+
+/* ===== GỐC CÂY (LOA BASS) ===== */
+.speaker-stump {
+    width: 60px; height: 60px;
+    background: #333;
+    margin: 5px auto 0;
+    border-radius: 5px;
+    display: flex; justify-content: center; align-items: center;
+    border: 2px solid #555;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.speaker-circle {
+    width: 40px; height: 40px; 
+    background: #000; 
+    border-radius: 50%;
+    animation: thump 0.5s infinite;
+    border: 1px solid #555;
+}
+
+@keyframes thump { 
+    0% { transform: scale(1); } 
+    50% { transform: scale(1.15); border-color: #00d2d3; } 
+}
+
+/* ===== TIÊU ĐỀ ===== */
+h1 {
+    font-family: 'Great Vibes', cursive;
+    color: #00d2d3;
+    margin-top: 30px;
+    font-size: 3rem;
+    text-shadow: 0 0 10px #2e86de;
+}

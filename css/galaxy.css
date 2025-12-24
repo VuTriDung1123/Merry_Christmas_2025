@@ -1,0 +1,42 @@
+body { 
+    margin: 0; 
+    overflow: hidden; 
+    background: #000; 
+}
+
+canvas { 
+    display: block; 
+}
+
+.title {
+    position: absolute; 
+    bottom: 50px; 
+    left: 0; 
+    width: 100%;
+    text-align: center; 
+    color: white; 
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem; 
+    text-shadow: 0 0 10px #6c5ce7; 
+    pointer-events: none; /* Để chuột bấm xuyên qua chữ được */
+}
+
+.back-btn {
+    position: absolute; 
+    top: 20px; 
+    left: 20px; 
+    color: white;
+    text-decoration: none; 
+    font-size: 1.2rem; 
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 15px; 
+    border-radius: 20px; 
+    font-family: sans-serif;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px #fff;
+}
