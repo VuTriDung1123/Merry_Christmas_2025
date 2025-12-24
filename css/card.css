@@ -1,0 +1,226 @@
+/* --- CẤU HÌNH CHUNG --- */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #2c3e50, #1a252f);
+    font-family: 'Patrick Hand', cursive;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* --- KHUNG SÁCH & CĂN GIỮA --- */
+.book {
+    position: relative;
+    width: 380px; 
+    height: 600px;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* TRẠNG THÁI MỞ (Đang đọc): Dịch gáy sách ra giữa màn hình */
+/* 190px = 50% chiều rộng sách (380px / 2) */
+.book.open-state {
+    transform: translateX(190px); 
+}
+
+/* TRẠNG THÁI KẾT THÚC (Trang cuối): Dịch toàn bộ sách sang phải để trang cuối nằm giữa */
+/* 380px = 100% chiều rộng sách */
+.book.close-state {
+    transform: translateX(380px); 
+}
+
+/* ... (Các phần khác giữ nguyên) ... */
+
+/* --- TỜ GIẤY --- */
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    perspective: 1500px;
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* --- MẶT TRƯỚC & SAU --- */
+.front, .back {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #fffaf0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.15);
+    backface-visibility: hidden; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.front {
+    z-index: 2;
+    background-color: white;
+}
+
+.back {
+    z-index: 1;
+    transform: rotateY(180deg);
+    border-left: 3px solid rgba(200, 200, 200, 0.2); 
+}
+
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* --- THỨ TỰ Z-INDEX --- */
+#p1 { z-index: 5; }
+#p2 { z-index: 4; }
+#p3 { z-index: 3; }
+#p4 { z-index: 2; }
+#p5 { z-index: 1; }
+
+/* --- ẢNH TRANG TRÍ --- */
+.deco-top, .deco-bottom {
+    width: 100%;
+    height: auto;
+    max-height: 130px;
+    object-fit: cover;
+    display: block;
+}
+.deco-top { margin-top: 0; }
+.deco-bottom { margin-bottom: 0; }
+
+/* --- NỘI DUNG --- */
+.content-box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    text-align: center;
+    color: #5e0a0a;
+}
+
+/* --- TRANG BÌA --- */
+.cover-page {
+    justify-content: center; 
+    align-items: center;
+    background-color: #8e0e00; 
+    border: 3px solid #d4af37;
+    position: relative;
+}
+.cover-page::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 2px solid #ffd700;
+    pointer-events: none;
+}
+.tree-cover {
+    width: 85%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.title-cover {
+    font-family: 'Great Vibes', cursive;
+    color: #ffd700;
+    font-size: 4rem;
+    margin: 0;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* --- TRANG CUỐI --- */
+.final-page {
+    background-color: #8e0e00; 
+    border: 3px solid #d4af37;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.final-page::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 2px solid #ffd700;
+    pointer-events: none;
+}
+.final-page h2 {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.final-page p {
+    color: #fff;
+    font-weight: bold;
+}
+.final-page .close-link {
+    color: #ffd700;
+    opacity: 0.8;
+}
+
+/* --- LỜI CHÚC TRANG CUỐI --- */
+.final-wish {
+    margin-top: 40px; /* Cách nút bấm một đoạn */
+    border-top: 1px solid rgba(255, 215, 0, 0.3); /* Đường kẻ mờ ngăn cách */
+    padding-top: 15px;
+    width: 80%; /* Chiều rộng đường kẻ */
+}
+
+.final-wish p {
+    font-family: 'Great Vibes', cursive; /* Font chữ nghệ thuật */
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    color: #fff; /* Màu chữ mặc định */
+}
+
+/* Hiệu ứng lấp lánh nhẹ cho lời chúc */
+.final-wish p:last-child {
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText {
+    from { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    to { text-shadow: 0 0 15px rgba(255, 215, 0, 1); }
+}
+
+/* --- Typography --- */
+h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #c0392b;
+    margin: 5px 0;
+}
+p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin: 5px 0;
+}
+.menu-btn {
+    background: linear-gradient(to right, #27ae60, #2ecc71);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+    margin-top: 15px;
+    font-family: 'Patrick Hand', cursive;
+}
+.menu-btn:hover { transform: scale(1.05); }
+.skip-btn {
+    position: absolute; top: 20px; right: 20px;
+    background: transparent; border: 1px solid rgba(255,255,255,0.5);
+    color: #fff; padding: 5px 15px; border-radius: 20px; cursor: pointer;
+    z-index: 100;
+}

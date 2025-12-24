@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Mời Giáng Sinh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/welcome.css">
+</head>
+<body>
+    <div id="snow-container"></div>
+
+    <div class="welcome-container">
+        <div class="wreath">🎄</div>
+        
+        <h1>Chào mừng đến với<br>Bộ Sưu Tập Giáng Sinh</h1>
+        
+        <p class="subtitle">Xin cho biết quý danh của bạn?</p>
+        
+        <div class="input-group">
+            <input type="text" id="guestName" placeholder="Nhập tên bạn vào đây..." autocomplete="off">
+            <button onclick="enterSite()">Gõ Cửa & Vào 🎁</button>
+        </div>
+
+        <p id="error-msg" style="color: #ff6b6b; display: none; margin-top: 10px;">Vui lòng nhập tên để ông già Noel biết mặt nhé!</p>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Hàm xử lý khi bấm nút Vào
+        function enterSite() {
+            const nameInput = document.getElementById('guestName');
+            const name = nameInput.value.trim();
+
+            if (name) {
+                // Lưu tên vào bộ nhớ trình duyệt để dùng sau này (nếu cần hiển thị ở menu)
+                localStorage.setItem('guestName', name);
+                
+                // Hiệu ứng mờ dần trước khi chuyển trang
+                document.body.style.opacity = 0;
+                document.body.style.transition = "opacity 1s ease";
+                
+                setTimeout(() => {
+                    // Chuyển hướng sang trang Menu cũ (index.html)
+                    window.location.href = 'card.html';
+                }, 1000);
+            } else {
+                // Rung lắc ô input nếu quên nhập tên
+                const inputGroup = document.querySelector('.input-group');
+                inputGroup.classList.add('shake');
+                document.getElementById('error-msg').style.display = 'block';
+                
+                setTimeout(() => {
+                    inputGroup.classList.remove('shake');
+                }, 500);
+            }
+        }
+
+        // Cho phép ấn Enter để vào
+        document.getElementById("guestName").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                enterSite();
+            }
+        });
+    </script>
+</body>
+</html>

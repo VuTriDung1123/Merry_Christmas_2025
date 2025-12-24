@@ -1,86 +1,41 @@
-/* Nút mở danh sách nhạc (Nổi trên cùng) */
+/* Nút nhạc hình tròn đơn giản */
 .music-toggle-btn {
     position: fixed;
     bottom: 20px;
-    right: 20px; /* Góc phải dưới */
+    right: 20px;
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    /* Nền kính mờ hiện đại */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     cursor: pointer;
-    z-index: 9999; /* Luôn nằm trên cùng */
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-    animation: pulse 2s infinite;
-}
-
-.music-toggle-btn i {
+    color: white;
     font-size: 24px;
-    color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
-/* Hiệu ứng xoay khi đang phát nhạc */
+/* Hiệu ứng khi di chuột vào */
+.music-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Hiệu ứng xoay tròn khi nhạc đang chạy */
 .music-toggle-btn.playing {
-    animation: spin 3s linear infinite;
-    border-color: #e74c3c;
-    box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+    animation: spin 4s linear infinite;
+    border-color: #f1c40f; /* Viền chuyển màu vàng */
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+    color: #f1c40f;
 }
 
-/* Danh sách nhạc (Mặc định ẩn) */
-.music-playlist {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 250px;
-    background: rgba(15, 32, 39, 0.9);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 15px;
-    z-index: 9998;
-    display: none; /* Ẩn đi */
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+@keyframes spin { 
+    100% { transform: rotate(360deg); } 
 }
-
-.music-playlist.show {
-    display: flex;
-    animation: slideUp 0.3s ease-out;
-}
-
-/* Từng bài hát trong danh sách */
-.song-item {
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: #ccc;
-    font-family: sans-serif;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.song-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.song-item.active {
-    background: #e74c3c; /* Màu đỏ nổi bật cho bài đang hát */
-    color: white;
-    font-weight: bold;
-}
-
-/* Keyframes Animation */
-@keyframes spin { 100% { transform: rotate(360deg); } }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
